@@ -4,6 +4,7 @@ import { Fight } from '../../interfaces/fight';
 import { Fighter } from '../../interfaces/fighter';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class FightService {
 
   private url = 'http://localhost:5000/fight';
   private urlB = 'http://localhost:5000'
+  private fightApiUrl = environment.fightsApiUrl;
 
   getCurrentFight(): Observable<Fight> {
     return this.http.get<Fight>(`${this.url}/current`).pipe(map((fight:Fight) => fight));
