@@ -1,0 +1,52 @@
+<div class="login-wrapper">
+  <div class="card">
+    <div class="card-body">
+      <form class="form-signin" #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+        <!--<img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <div *ngIf="areCredentialsInvalid">*Invalid Credentials! Please Register</div>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required #email="ngModel" ngModel>
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+          <div *ngIf="email.errors?.required">
+            Email is required.
+          </div>
+        </div>
+
+
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required minlength="6" #password="ngModel" ngModel>
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+
+          <div *ngIf="password.errors?.required">
+            Password is required.
+          </div>
+          <div *ngIf="password.errors?.minlength">
+            Password must be at least 6 characters long.
+          </div>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+        <!--<div class="alert alert-danger" role="alert" *ngIf="isFormInValid">
+          Please complete all fields
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="areCredentialsInvalid">
+          Cannot find user registered with email and password
+        </div>-->
+
+
+      </form>
+    </div>
+  </div>
+</div>
+
+

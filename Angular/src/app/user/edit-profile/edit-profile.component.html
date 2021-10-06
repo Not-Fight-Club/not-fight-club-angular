@@ -1,0 +1,29 @@
+<div class="wrapper bg-white mt-sm-5">
+    <h4 class="pb-4 border-bottom">Edit Your Profile</h4>
+    <div class="py-2">
+      <form [formGroup]="formValue">
+        <div style="display: none;" class="row py-2">
+            <div  class="col-md-6"> <label for="userId">User ID:</label> <input type="text" formControlName="userId" class="bg-light form-control"> </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6"> <label for="username">Username</label> <input type="text" formControlName="userName" class="bg-light form-control"> </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6"> <label for="email">Email Address</label> <input type="text" formControlName="email" class="bg-light form-control"> </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6"> <label for="password">Password</label> <input type="password" formControlName="pword" class="bg-light form-control"> </div>
+        </div>
+        <div class="row py-2" style="display: none;">
+            <div class="col-md-6"> <label for="bucks">Bucks</label> <input type="text" formControlName="bucks" class="bg-light form-control"> </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-md-6"> <label for="dob">Date of Birth</label> <input type="text" formControlName="dob" class="bg-light form-control"> </div>
+        </div>
+        <div class="py-3 pb-4 border-bottom"> <button (click)="updateCurrentUser()" class="btn border button mr-3">Save Changes</button> <button (click)="goBackToProfile()" class="btn border button">Cancel</button> </div>
+        <div class="d-sm-flex align-items-center pt-3" id="deactivate">
+            <div class="ml-auto"> <button class="btn danger" (click)="deleteUser()">Delete Account</button> </div>
+        </div>
+      </form>
+    </div>
+</div>

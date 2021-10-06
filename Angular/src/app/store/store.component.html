@@ -1,0 +1,30 @@
+<header>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal">This is not a store</h1>
+    <p class="fs-5" *ngIf="user">!Bucks: ${{user.bucks}}</p>
+  </div>
+</header>
+
+<main class="store-wrapper">
+  <!--I've deleted the reroll character section.-->
+  <!--This button is only used for debugging purposes-->
+  <button (click)="getRich()">Add 2000 !Bucks</button>
+
+  <h2>Add trait to database</h2>
+  <p>Would you like to add a trait to the database? Now is your time to shine! For <span id="costAddTrait">2000</span>
+    !Bucks, you can add any new trait you want! Just make sure the trait isn't
+    gamebreaking or X-rated. We need to keep it PG-13. <button (click)="addTrait()">Purchase</button></p>
+
+  <h2>Edit character form</h2>
+  <p>Want your character to be something else? Now you can change it for just <span id="costEditForm">400</span>
+    !Bucks. <button (click)="editCharacterForm()" disabled>Coming Soon</button></p>
+
+  <h2>Edit character trait</h2>
+  <p>Think your character's trait is lame? Now you can change it for just <span id="costEditTrait">200</span> !Bucks.
+    <button (click)="editCharacterTrait()" disabled>Coming Soon</button>
+  </p>
+
+  <h2>Edit character weapon</h2>
+  <p>Don't like the weapon your character has? Now you can change it for just <span id="costEditWeapon">100</span>
+    !Bucks. <button (click)="editCharacterWeapon()" disabled>Coming Soon</button></p>
+</main>
