@@ -1,6 +1,8 @@
 //import { Guid } from "guid-typescript";
 export interface User {
-  userId: number;
+  //userId: number;
+
+  userId: string;
   userName: string;
   pword: string;
   email: string;
