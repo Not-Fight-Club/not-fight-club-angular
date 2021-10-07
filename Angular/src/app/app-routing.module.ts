@@ -13,6 +13,7 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { FightComponent } from './fight/fight.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { VoteComponent } from './vote/vote.component';
 
 
 
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'fight/:fightId', component: FightComponent },
   { path: 'fight', component: FightComponent },
   { path: 'archive', component: ArchiveComponent },
+  { path: 'vote', component: VoteComponent },
   { path: '**', component: HomeComponent }
 ]
 

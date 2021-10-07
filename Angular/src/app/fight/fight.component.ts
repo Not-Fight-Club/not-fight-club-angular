@@ -21,7 +21,7 @@ export class FightComponent implements OnInit {
 
 
   fight: Fight | null = null;
-  fighters: Fighter[] | null = null;
+  fighters: Fighter[] = [];
 
   characters: Character[] = [];
   traits: Trait[] = [];
@@ -41,39 +41,39 @@ export class FightComponent implements OnInit {
       }
     }, 1000)
 
-    setTimeout(() => {
-      if (this.fighters != null) {
-        this.getCharacter(this.fighters[0].characterId, 0);
-      }
-      else {
-        console.log("We got another problem.");
-      }
-    }, 2000)
+    //setTimeout(() => {
+    //  if (this.fighters != null) {
+    //    this.getCharacter(this.fighters[0].characterId, 0);
+    //  }
+    //  else {
+    //    console.log("We got another problem.");
+    //  }
+    //}, 2000)
 
-    setTimeout(() => {
-      if (this.fighters != null) {
-        this.getCharacter(this.fighters[1].characterId, 1);
-      }
-      else {
-        console.log("We got another problem.");
-      }
-    }, 3000)
+    //setTimeout(() => {
+    //  if (this.fighters != null) {
+    //    this.getCharacter(this.fighters[1].characterId, 1);
+    //  }
+    //  else {
+    //    console.log("We got another problem.");
+    //  }
+    //}, 3000)
 
-    setTimeout(() => {
-      this.getTrait(this.characters[0].traitId, 0);
-    }, 4000)
+    //setTimeout(() => {
+    //  this.getTrait(this.characters[0].traitId, 0);
+    //}, 4000)
 
-    setTimeout(() => {
-      this.getTrait(this.characters[1].traitId, 1);
-    }, 5000)
+    //setTimeout(() => {
+    //  this.getTrait(this.characters[1].traitId, 1);
+    //}, 5000)
 
-    setTimeout(() => {
-      this.getWeapon(this.characters[0].weaponId, 0);
-    }, 6000)
+    //setTimeout(() => {
+    //  this.getWeapon(this.characters[0].weaponId, 0);
+    //}, 6000)
 
-    setTimeout(() => {
-      this.getWeapon(this.characters[1].weaponId, 1);
-    }, 7000)
+    //setTimeout(() => {
+    //  this.getWeapon(this.characters[1].weaponId, 1);
+    //}, 7000)
 
 
   }
