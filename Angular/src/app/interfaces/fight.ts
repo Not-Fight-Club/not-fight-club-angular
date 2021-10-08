@@ -5,5 +5,6 @@ export interface Fight {
   Date: Date;
   Result: string;
   Location: number;
-  Weather: number;
+  weatherNavigation:string;
+
 }

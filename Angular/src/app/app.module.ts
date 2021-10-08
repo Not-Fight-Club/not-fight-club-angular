@@ -19,7 +19,7 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { FightListComponent} from './fight-list/fight-list.component'
 
 
 
@@ -40,7 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
-
+    FightListComponent,
 
   ],
   imports: [
@@ -50,7 +50,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

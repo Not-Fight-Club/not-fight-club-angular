@@ -9,7 +9,7 @@ export class ArchiveService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:5000'
+  private url = 'http://localhost:5003'
   FightList(): Observable<any> {
     return this.http.get<any>(`${this.url}/Fight/All`)
   }
