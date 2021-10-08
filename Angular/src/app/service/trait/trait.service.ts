@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Trait } from '../../interfaces/trait';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class TraitService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:5000';
+  //private url = 'http://localhost:5000';
+  private url = environment.charactersApiUrl;
   //create functions for http requests
 
   TraitList(): Observable<Trait[]> {

@@ -20,7 +20,7 @@ export class FightService {
   private fightApiUrl = environment.fightsApiUrl;
 
   getCurrentFight(): Observable<Fight> {
-    return this.http.get<Fight>(`${this.url}/current`).pipe(map((fight:Fight) => fight));
+    return this.http.get<Fight>(`${this.fightApiUrl}/fight/current`).pipe(map((fight:Fight) => fight));
   }
 
   getFightById(fightId: number): Observable<Fight> {
@@ -29,6 +29,6 @@ export class FightService {
   }
 
   getFighters(fightId: number): Observable<Fighter[]> {
-    return this.http.get<Fighter[]>(`${this.urlB}/current/fighters/${fightId}`).pipe(map((participants: Fighter[]) => participants));
+    return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`);
   }
 }
