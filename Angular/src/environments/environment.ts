@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  fightsApiUrl: "https://localhost:5003"
+  fightsApiUrl: "https://localhost:5003",
+  charactersApiUrl: "https://localhost:5005"
 };
 
 /*
