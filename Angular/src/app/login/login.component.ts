@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Guid } from 'guid-typescript';
+import { User } from '../interfaces/user';
+import { UserR } from '../interfaces/userR';
 import { SignInData } from '../model/signInData';
 import { AuthenticationService } from '../service/authentication/authentication.service';
 
@@ -70,6 +73,21 @@ export class LoginComponent implements OnInit {
     let authenticated = this.authenticationService.isAuthenticated;
     console.log(`final auth: ${authenticated}`);
     return authenticated;
+  }
+
+
+  //this method is strictly for development purposes and should be deleted for the final project.
+  BypassLogin(): void {
+    let user: User = {
+      userId: 'C39158F1-A0F0-426C-A9EB-B13253F602DF',
+      userName: 'Winnie Wynn',
+      pword: 'password',
+      email: 'email@email.com',
+      dob: new Date(),
+      bucks: 20
+    }
+
+    sessionStorage.setItem('user', JSON.stringify(user));
   }
 
 }

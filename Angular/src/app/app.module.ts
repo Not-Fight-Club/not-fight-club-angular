@@ -20,7 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductComponent } from './product/product.component';
-
+import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { ProductComponent } from './product/product.component';
     HomeComponent,
     ArchiveComponent,
     ProductComponent,
+    UserPurchasesComponent
   ],
   imports: [
     HttpClientModule,
