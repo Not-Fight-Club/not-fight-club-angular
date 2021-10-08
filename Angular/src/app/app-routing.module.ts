@@ -13,18 +13,13 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { FightComponent } from './fight/fight.component';
 import { ArchiveComponent } from './archive/archive.component';
-
-
-
-
-
-
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
-  { path: 'store', component: StoreComponent, canActivate: [AuthGuard] },
+  { path: 'store', component: StoreComponent},
   { path: 'edit-profile/:userId', component: EditProfileComponent },
   { path: 'character', component: CharacterComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
@@ -33,7 +28,9 @@ const routes: Routes = [
   { path: 'fight/:fightId', component: FightComponent },
   { path: 'fight', component: FightComponent },
   { path: 'archive', component: ArchiveComponent },
+  { path: 'product', component: ProductComponent},
   { path: '**', component: HomeComponent }
+  
 ]
 
 
