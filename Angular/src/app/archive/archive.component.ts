@@ -27,7 +27,7 @@ export class ArchiveComponent implements OnInit {
 // }
   }
   getFightsByUserId(id: string):void{
-    //let classThis: FightListComponent = this;
+  
     this.fightService.getFightsByUserId(id).subscribe(fights =>{
       console.log(fights);
       this.userFightList = fights;
@@ -50,8 +50,5 @@ export class ArchiveComponent implements OnInit {
 
   
 
-  // getFights() {
-  //     this.archiveService.FightList().subscribe((data) => console.log(data))
-  //   }
 
 }
