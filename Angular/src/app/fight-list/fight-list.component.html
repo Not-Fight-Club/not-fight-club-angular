@@ -1,7 +1,34 @@
 <div>
-	<ul> Hi There
-		<li *ngFor="let fight of fights">
-			<h1>{{fight.weatherNavigation}}</h1>
-		</li>
-	</ul>
+
+
+	<div class="table-responsive">
+		<table class="table table-striped table-sm">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Winner</th>
+					<th scope="col">Loser</th>
+					<th scope="col">Location</th>
+					<th scope="col">Weather Condition</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					*ngFor="let fight of fights | paginate: {id: 'list_pagination', itemsPerPage: 5, currentPage: page, totalItems: totalRecords}">
+					<td>{{fight.fightId}}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>{{fight.weatherNavigation}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="page--controls">
+			<pagination-controls id="list_pagination" directionlinks="true" (pageChange)="page =$event">
+			</pagination-controls>
+			<div>
+			</div>
+		</div>
+	</div>
+
 </div>

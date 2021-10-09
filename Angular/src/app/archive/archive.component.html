@@ -45,41 +45,16 @@
         <h1 class="h2">!Archives</h1>
 
       </div>
-
+      <app-fight-list [fights]='fightList'></app-fight-list>
       <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
       <!-- This should change depending on which link is pressed -->
       <!-- <h2>Fights</h2> -->
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Winner</th>
-              <th scope="col">Loser</th>
-              <th scope="col">Location</th>
-              <th scope="col">Weather Condition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              *ngFor="let fight of fightList | paginate: {id: 'list_pagination', itemsPerPage: 5, currentPage: page, totalItems: totalRecords}">
-              <td>{{fight.fightId}}</td>
-              <td>{{fight.winnerNavigation}}</td>
-              <td>{{fight.loserNavigation}}</td>
-              <td>{{fight.locationNavigation}}</td>
-              <td>{{fight.weatherNavigation}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div id="page--controls">
-          <pagination-controls id="list_pagination" directionlinks="true" (pageChange)="page =$event">
-          </pagination-controls>
-          <div>
-            <app-fight-list></app-fight-list>
-          </div>
-        </div>
-      </div>
+      <button *ngIf="userId" (click)='showMyFights()'>My Fights</button>
+      <app-fight-list *ngIf="userFightList.length>0" [fights]='userFightList'></app-fight-list>
+
     </main>
+
+
   </div>
 </div>
