@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { userInfo } from 'os';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/service/user/user.service';
 import { UserR } from '../../interfaces/userR';
@@ -13,8 +14,9 @@ import { UserR } from '../../interfaces/userR';
 })
 export class UserProfileComponent implements OnInit {
 
-  //user: User | null = null;
-  user: UserR | null = null;
+  user: User | null = null;
+  // user: UserR | null = null;
+  image: any;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) { }
   about: boolean = true;
@@ -22,21 +24,23 @@ export class UserProfileComponent implements OnInit {
   
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-     // console.log(params);
-      //this.userService.getUserById(params["userId"]).subscribe(user => {
-      //  console.log(user);
-      //this.user = user;
+     console.log(params);
+      this.userService.getUserById(params["userId"]).subscribe(user => {
+       console.log(user);
+        this.user = user;
+        this.image = user.profilePic;
+    })
 
       // get the user from session storage instead
-      let id = sessionStorage.getItem('user');
-      if (!id) {
-        return
-      } else {
-        let id1 = JSON.parse(id);
-        this.user = id1;
-        console.log(this.user);
-        console.log(this.user?.userId)
-      }
+      // let id = sessionStorage.getItem('user');
+      // if (!id) {
+      //   return
+      // } else {
+      //   let id1 = JSON.parse(id);
+      //   this.user = id1;
+      //   console.log(this.user);
+      //   console.log(this.user?.userId)
+      // }
       
    })
   }

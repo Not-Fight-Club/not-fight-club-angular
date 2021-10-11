@@ -2,6 +2,9 @@
     <h4 class="pb-4 border-bottom">Edit Your Profile</h4>
     <div class="py-2">
       <form [formGroup]="formValue">
+        <div class="row py-2">
+            <div  class="col-md-6"> <label for="profilePic">Upload profile picture</label> <input type="file" (change)="onChange($event)" formControlName="profilePic" class="bg-light form-control"> </div>
+        </div>
         <div style="display: none;" class="row py-2">
             <div  class="col-md-6"> <label for="userId">User ID:</label> <input type="text" formControlName="userId" class="bg-light form-control"> </div>
         </div>
@@ -19,6 +22,12 @@
         </div>
         <div class="row py-2">
           <div class="col-md-6"> <label for="dob">Date of Birth</label> <input type="text" formControlName="dob" class="bg-light form-control"> </div>
+        </div>
+         <div class="row py-2" style="display: none;">
+          <div class="col-md-6"> <label for="dob">active</label> <input type="text" formControlName="active" class="bg-light form-control"> </div>
+        </div>
+         <div class="row py-2" style="display: none;">
+          <div class="col-md-6"> <label for="dob">Streax</label> <input type="text" formControlName="loginStreak" class="bg-light form-control"> </div>
         </div>
         <div class="py-3 pb-4 border-bottom"> <button (click)="updateCurrentUser()" class="btn border button mr-3">Save Changes</button> <button (click)="goBackToProfile()" class="btn border button">Cancel</button> </div>
         <div class="d-sm-flex align-items-center pt-3" id="deactivate">

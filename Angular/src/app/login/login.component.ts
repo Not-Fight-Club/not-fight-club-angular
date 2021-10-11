@@ -78,14 +78,20 @@ export class LoginComponent implements OnInit {
 
   //this method is strictly for development purposes and should be deleted for the final project.
   BypassLogin(): void {
+    // let id: Guid = Guid.parse("C39158F1-A0F0-426C-A9EB-B13253F602DF");
     let user: User = {
-      userId: 'C39158F1-A0F0-426C-A9EB-B13253F602DF',
+      userId: Guid.parse("C39158F1-A0F0-426C-A9EB-B13253F602DF"),
       userName: 'Winnie Wynn',
       pword: 'password',
       email: 'email@email.com',
       dob: new Date(),
-      bucks: 20
+      bucks: 20,
+      active: true,
+      lastLogin: new Date(),
+      loginStreak: 3,
+      profilePic: ''
     }
+
 
     sessionStorage.setItem('user', JSON.stringify(user));
   }

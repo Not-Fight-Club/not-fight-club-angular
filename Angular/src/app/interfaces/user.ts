@@ -8,6 +8,7 @@ export interface User {
   email: string;
   dob: Date;
   bucks: number;
+  active: boolean;
   lastLogin: Date;
   loginStreak: number;
   profilePic: string;
