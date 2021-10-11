@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   fightsApiUrl: "https://localhost:5003",
-  charactersApiUrl: "https://localhost:5005"
+  charactersApiUrl: "https://localhost:5005",
+  productsApiUrl: "https://localhost:5007"
 };
 
 /*
