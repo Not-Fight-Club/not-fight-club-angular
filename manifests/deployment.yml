@@ -16,4 +16,4 @@ spec:
         - name: notfightclubangular 
           image: p3fightclub.azurecr.io/notfightclubangular
           ports:
-          - containerPort: 5001
+          - containerPort: 80
