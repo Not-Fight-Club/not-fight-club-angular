@@ -37,11 +37,17 @@ export class ProductComponent implements OnInit {
     let id: Guid = Guid.parse("DEEE375B-92B4-4864-92B5-1573AADB7D22");
     this.productService.getProductById(productId).subscribe(data => {
       console.log(data);
+
       this.productService.buyProduct(id, data).subscribe(obj => {
         //call userService to update the bucks
         console.log(obj);
+        //Edit user bucks accordingly and send post request to edit the bucks.
+        // console.log(data);
+        // if (data.productDiscount) {
+        //   let finalPrice = data.productPrice - ((data.productDiscount / 100) * data.productPrice);
+        // }
         // if (userString !== null) {
-        //   user.bucks = user.bucks - data.productPrice;
+        //   user.bucks = user.bucks - Math.Round(finalPrice);
         // }
         // this.userService.editProfile(obj.userId, user).subscribe();
       });

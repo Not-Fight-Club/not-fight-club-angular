@@ -25,51 +25,49 @@ export class EditProfileComponent implements OnInit {
       email: [''],
       dob: [''],
       bucks: [''],
-      pword: ['']
+      pword: [''],
+      active: [''],
+      lastLogin: [''],
+      loginStreak: [''],
+      profilePic: ['']
     })
       
 
     let userFromSession = sessionStorage.getItem('user');
-    if (!userFromSession) {
-      return
-    } else {
-      let id = JSON.parse(userFromSession).userId;
-      let username = JSON.parse(userFromSession).userName;
-      let email = JSON.parse(userFromSession).email;
-      let dob = JSON.parse(userFromSession).dob;
-      let bucks = JSON.parse(userFromSession).bucks;
-      let password = JSON.parse(userFromSession).pword;
+    let id = sessionStorage.getItem('user');
+      if (!userFromSession) {
+        return
+      } else {
+        let currentUser = JSON.parse(userFromSession);
+      // let id = JSON.parse(userFromSession).userId;
+      // let username = JSON.parse(userFromSession).userName;
+      // let email = JSON.parse(userFromSession).email;
+      // let dob = JSON.parse(userFromSession).dob;
+      // let bucks = JSON.parse(userFromSession).bucks;
+      // let password = JSON.parse(userFromSession).pword;
 
-      this.formValue.controls['userId'].setValue(id);
-      this.formValue.controls['userName'].setValue(username);
-      this.formValue.controls['email'].setValue(email);
-      this.formValue.controls['dob'].setValue(dob);
-      this.formValue.controls['pword'].setValue(password);
-      this.formValue.controls['bucks'].setValue(bucks);
+      this.formValue.controls['userId'].setValue(currentUser.userId);
+      this.formValue.controls['userName'].setValue(currentUser.userName);
+      this.formValue.controls['email'].setValue(currentUser.email);
+      this.formValue.controls['dob'].setValue(currentUser.dob);
+      this.formValue.controls['pword'].setValue(currentUser.pword);
+      this.formValue.controls['bucks'].setValue(currentUser.bucks);
+      this.formValue.controls['active'].setValue(currentUser.active);
+      this.formValue.controls['loginStreak'].setValue(currentUser.loginStreak);
+      this.formValue.controls['profilePic'].setValue(currentUser.profilePic);
       // debugger
-      console.log(this.formValue.value)
-    }
+      }
+   
   }
 
   updateCurrentUser() {
     console.log(this.formValue.value);
+    
     this.userService.editProfile(this.formValue.value.userId, this.formValue.value).subscribe(data => {
       // this.userService.getUserById(this.formValue.value.userId);
       this.router.navigateByUrl(`/users/${this.formValue.value.userId}`)
     })
   };
-
-      // this.userService.getUserById(id).pipe(
-      //   map((user: User) => {
-      //     this.formValue.patchValue({
-      //       userName: user.userName,
-      //       email: user.email,
-      //       dob: user.dob
-      //     })
-      //   })
-      // )
-    
-
   
   
   goBackToProfile() {

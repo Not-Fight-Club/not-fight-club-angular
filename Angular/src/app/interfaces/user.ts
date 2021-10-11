@@ -8,6 +8,9 @@ export interface User {
   email: string;
   dob: Date;
   bucks: number;
+  lastLogin: Date;
+  loginStreak: number;
+  profilePic: string;
 
   //userId: Guid | null;
   //userName: string;
