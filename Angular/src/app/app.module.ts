@@ -19,11 +19,8 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductComponent } from './product/product.component';
 import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -41,9 +38,8 @@ import { UserPurchasesComponent } from './user/user-purchases/user-purchases.com
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
-    UserPurchasesComponent,
-
-
+    ProductComponent,
+    UserPurchasesComponent
   ],
   imports: [
     HttpClientModule,
