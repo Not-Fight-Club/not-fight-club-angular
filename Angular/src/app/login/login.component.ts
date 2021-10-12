@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     //grab a single user from the database
     //check the password entered on the form with the returned password from the database using bcrypt
     //if the password matches, change isauthenticated to true and redirect to home
-      //save user to session storage
+    //save user to session storage
     //if the password doesn't match display to screen that credentials are invalid
 
 
@@ -84,7 +84,12 @@ export class LoginComponent implements OnInit {
       pword: 'password',
       email: 'email@email.com',
       dob: new Date(),
-      bucks: 20
+      bucks: 20,
+      Active: true,
+      LastLogin: new Date('October 10, 2021 23:15:30'),
+      LoginStreak: 7,
+      ProfilePic: 'false',
+      RewardCollected: false
     }
 
     sessionStorage.setItem('user', JSON.stringify(user));
