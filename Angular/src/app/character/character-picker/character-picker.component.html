@@ -1,4 +1,5 @@
 
 <select id="name" name="name">
+  <option value="0">Random Character</option>
   <option *ngFor="let c of characters" [value]="c.characterId">{{c.name}} ({{c.baseform}})</option>
 </select>
