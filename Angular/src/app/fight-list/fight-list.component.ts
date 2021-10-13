@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Character } from '../interfaces/character';
 import { Fight } from '../interfaces/fight';
 import { FightService } from '../service/fight/fight.service';
 
@@ -9,6 +10,8 @@ import { FightService } from '../service/fight/fight.service';
 })
 export class FightListComponent implements OnInit {
   @Input() fights:Fight[]=[];
+  @Input() characters:Character[]=[];
+ 
   totalRecords: number = this.fights.length;
   page: number = 1;
   maxSize: number = 2;
@@ -17,6 +20,8 @@ export class FightListComponent implements OnInit {
   ngOnInit(): void {
     //this.getFightsByUserId('CA8E183D-0549-401E-8789-10D1921BB1C9');
   }
- 
+  // getCharactersForFight():void{
+
+  // } 
 
 }
