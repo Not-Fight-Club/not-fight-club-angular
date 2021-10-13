@@ -20,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FightListComponent} from './fight-list/fight-list.component'
+import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
+
 
 
 
@@ -41,6 +43,8 @@ import { FightListComponent} from './fight-list/fight-list.component'
     HomeComponent,
     ArchiveComponent,
     FightListComponent,
+    CharacterPickerComponent,
+
 
   ],
   imports: [
