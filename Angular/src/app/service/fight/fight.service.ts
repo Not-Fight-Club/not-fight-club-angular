@@ -5,6 +5,7 @@ import { Fighter } from '../../interfaces/fighter';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { FightWithCharacter } from 'src/app/interfaces/fightWithCharacter';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,6 @@ export class FightService {
   //get fights by userID
   getFightsByUserId(userID: string): Observable<Fight[]>{
     //console.log(fightId);
-    return this.http.get<Fight[]>(`${this.url}/byuser/${userID}`).pipe(map((fights: Fight[]) => fights));
+    return this.http.get<FightWithCharacter[]>(`${this.url}/byuser/${userID}`).pipe(map((fights: FightWithCharacter[]) => fights));
   }
 }

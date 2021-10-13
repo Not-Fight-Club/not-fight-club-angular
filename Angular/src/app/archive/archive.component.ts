@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Character } from '../interfaces/character';
 import { ArchiveService } from '../service/archive/archive.service';
 import { FightService } from '../service/fight/fight.service';
 
@@ -11,6 +12,7 @@ export class ArchiveComponent implements OnInit {
 
   fightList: any[] = [];
   userFightList: any[] =[];
+  charactersList:Character[]=[];
   totalRecords: number = this.fightList.length;
   page: number = 1;
   maxSize: number = 2;
@@ -25,6 +27,7 @@ export class ArchiveComponent implements OnInit {
 //     if(this.userId){
 //       this.getFightsByUserId(this.userId);
 // }
+    this.getCharacters();
   }
   getFightsByUserId(id: string):void{
   
@@ -46,6 +49,9 @@ export class ArchiveComponent implements OnInit {
   showMyFights():void{
     if(this.userId)
       this.getFightsByUserId(this.userId);
+  }
+  getCharacters():void{
+    
   }
 
   
