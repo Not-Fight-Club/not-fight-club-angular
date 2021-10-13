@@ -27,4 +27,8 @@ export class CharacterService {
   GetCharacter(charId: number): Observable<Character> {
     return this.http.get<Character>(`${this.url}/api/character/${charId}`).pipe(map((character: Character) => character));
   }
+
+  GetCharacters(): Observable<Character[]> {
+    return this.http.get<Character[]>(`${this.url}/api/character`);
+  }
 }
