@@ -13,6 +13,7 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { FightComponent } from './fight/fight.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { NewFightComponent } from './new-fight/new-fight.component';
 
 
 
@@ -21,6 +22,7 @@ import { ArchiveComponent } from './archive/archive.component';
 
 
 const routes: Routes = [
+  { path: 'fights/new', component: NewFightComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },

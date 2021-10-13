@@ -1,9 +1,10 @@
+
+
 export interface Fight {
   fightId: number;
-  Winner: number;
-  Loser: number;
-  Date: Date;
-  Result: string;
+  CreatorId:number
+  StartDate: Date;
+  EndDate: Date;
   Location: number;
   Weather: number;
 }
