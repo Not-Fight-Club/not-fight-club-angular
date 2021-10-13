@@ -12,6 +12,7 @@ export interface User {
   lastLogin: Date;
   loginStreak: number;
   profilePic: string;
+  rewardCollected: boolean;
 
   //userId: Guid | null;
   //userName: string;

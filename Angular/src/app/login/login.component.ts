@@ -89,7 +89,8 @@ export class LoginComponent implements OnInit {
       active: true,
       lastLogin: new Date(),
       loginStreak: 3,
-      profilePic: ''
+      profilePic: '',
+      rewardCollected: true
     }
 
 

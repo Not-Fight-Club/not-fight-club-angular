@@ -40,7 +40,7 @@ export class UserService {
 
   deleteUser(id: Guid): Observable<User>  {
     console.log(id);
-    return this.http.delete<User>(this.url + '/users/' + id);
+    return this.http.delete<User>(this.url + '/api/user/' + id);
   }
 
   Login(email: string): Observable<UserR> {

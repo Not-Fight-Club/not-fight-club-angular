@@ -32,7 +32,8 @@ export class EditProfileComponent implements OnInit {
       active: [''],
       lastLogin: [''],
       loginStreak: [''],
-      profilePic: ['']
+      profilePic: [''],
+      rewardCollected: [' ']
     })
       
 
@@ -59,6 +60,7 @@ export class EditProfileComponent implements OnInit {
       this.formValue.controls['lastLogin'].setValue(currentUser.lastLogin);
       this.formValue.controls['loginStreak'].setValue(currentUser.loginStreak);
       this.formValue.controls['profilePic'].setValue(currentUser.profilePic);
+      this.formValue.controls['rewardCollected'].setValue(currentUser.rewardCollected);
       // debugger
       }
    
@@ -124,7 +126,9 @@ export class EditProfileComponent implements OnInit {
       let id1 = JSON.parse(id).userId
       console.log(id1)
       if (confirm("Are you sure you want to delete your profile?\nAll information associated to this user profile will be permanently deleted.")) {
-        this.userService.deleteUser(id1).subscribe(
+        //
+        let DBUserId: Guid = Guid.parse("53266E78-7DEE-42C9-B9B8-E40422C959BF");
+        this.userService.deleteUser(DBUserId).subscribe(
           id => {
             this.router.navigate(['login']);
           });
