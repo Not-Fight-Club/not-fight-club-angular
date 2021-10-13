@@ -19,6 +19,7 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
 import { PrivPubFightComponent } from './priv-pub-fight/priv-pub-fight.component';
 import { NewFightComponent } from './new-fight/new-fight.component';
 
@@ -42,8 +43,6 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
-    PrivPubFightComponent,
-    NewFightComponent,
 
 
   ],
