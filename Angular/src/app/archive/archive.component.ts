@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { relativeTimeThreshold } from 'moment';
 import { Character } from '../interfaces/character';
 import { Fight } from '../interfaces/fight';
 import { Fighter } from '../interfaces/fighter';
@@ -23,8 +24,9 @@ export class ArchiveComponent implements OnInit {
   characterIdList:number[]=[];
   //store all fithers for all the past fight
   allFighters:any[] =[];
+  displayUserFight:boolean = false;
   //combined list for fight with characters
-  //should I use an obj
+  //I use an array of obj
   fightWithCharacters:any[] =[];
   /*
   [{
@@ -77,36 +79,37 @@ export class ArchiveComponent implements OnInit {
     //get all fighters filter our who particiapate in a fight 
 
     getFightWithCharacters():void{
-    //  if(this.fightList.length>0)
-  //    for(let i =0;i<this.fightList.length;i++){
-  //      let f=this.fightList[i];
-  //      this.fightService.getFighters(f.fightId).subscribe(x=>{
-  //         this.characterIdList=x.map(ele=>ele.characterId);
-  //         //characterId for each fight
-  //       this.allFighters.push(this.characterIdList);
-
-  // })
-  //    }
+ 
+      
    
       this.fightList.forEach(f=>{
         let fight:any = f;
+        //get fighters by fight id,gets back a list
         this.fightService.getFighters(f.fightId).subscribe(x=>{
 
           let fighters:any[] = [];
+          //for each fighter, 
             x.forEach(ft => {
 
-              let fighter:any = ft;
+              let fighter:any = ft; //use this to store a single fighter
+              //grab the character from charactersList if the charcterId match the characterId of the fighter
               fighter.character = this.charactersList.filter(co => co.characterId === ft.characterId)[0];
+              //store the figher to the fighter list
               fighters.push(fighter);
+              //check if fighter is the winner, if so, grab the name and store it to winnerNavigation 
+              //so that we can use later 
               if(ft.isWinner){
                 fight.winnerNavigation = fighter.character.name;
               }else{
                 fight.loserNavigation = fighter.character.name;
               }
+              //need to convert toUpperCase because the userId I store in sessionStorage is uppercase
+              //but when the userId is retrived from db, it is in lower case
               if(fighter.character.userId.toUpperCase() === this.userId?.toUpperCase())
                 this.userFightList.push(fight);
                
           })
+          //assign fighters[] to fighter{} obj in an []
           fight.fighters = fighters;
         });
         this.fightWithCharacters.push(fight);
@@ -118,12 +121,6 @@ export class ArchiveComponent implements OnInit {
     //get characters for past fights using characterId 
     //make combination list
   
-
-
-
-
-
-
   getFightsByUserId(id: string):void{
   
     this.fightService.getFightsByUserId(id).subscribe(fights =>{
@@ -151,13 +148,8 @@ export class ArchiveComponent implements OnInit {
   showMyFights():void{
     //if(this.userId)
     //  this.getFightsByUserId(this.userId);
+    this.displayUserFight=!this.displayUserFight;
   }
-  //get all characters s.t. we can use it to find out fighters who participate in a fight
-  // getCharacters():void{
-  //   this.characterService.GetCharacters().subscribe(x=>{
-  //     this.charactersList=x;
-  //   })
-  // }
 
 
 

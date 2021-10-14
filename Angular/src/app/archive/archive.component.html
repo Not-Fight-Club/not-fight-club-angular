@@ -45,14 +45,16 @@
         <h1 class="h2">!Archives</h1>
 
       </div>
-      <app-fight-list [fightWithCharacters]="fightWithCharacters">
+      <button *ngIf="!displayUserFight" (click)='showMyFights()'>My Fights</button>
+      <button *ngIf="displayUserFight" (click)='showMyFights()'>All Fights</button>
+      <app-fight-list *ngIf="!displayUserFight" [fightWithCharacters]="fightWithCharacters">
       </app-fight-list>
       <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
       <!-- This should change depending on which link is pressed -->
       <!-- <h2>Fights</h2> -->
-      <button *ngIf="userId" (click)='showMyFights()'>My Fights</button>
-      <app-fight-list *ngIf="userFightList.length>0" [fightWithCharacters]='userFightList'>
+
+      <app-fight-list *ngIf="displayUserFight" [fightWithCharacters]='userFightList'>
       </app-fight-list>
 
     </main>
