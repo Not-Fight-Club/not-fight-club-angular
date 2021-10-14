@@ -68,12 +68,7 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserId();
     this.getFights();
-      //this.getFightsByUserId('CA8E183D-0549-401E-8789-10D1921BB1C9');
-    
-//     if(this.userId){
-//       this.getFightsByUserId(this.userId);
-// }
-   // this.getCharacters();
+
     
   }
     //get all fighters filter our who particiapate in a fight 
