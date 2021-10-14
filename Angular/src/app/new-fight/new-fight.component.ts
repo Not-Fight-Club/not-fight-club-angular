@@ -10,6 +10,8 @@ export class NewFightComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
 }

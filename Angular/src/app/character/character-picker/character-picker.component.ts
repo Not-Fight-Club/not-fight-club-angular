@@ -12,7 +12,9 @@ export class CharacterPickerComponent implements OnInit {
   constructor(private characterService: CharacterService) { }
 
   @Input() name: string = "characterInput";
+  @Input() id: string = "characterInput";
   @Input() characters: Character[] = [];
+  @Input() label: string = "Character";
 
   ngOnInit(): void {
     if (!this.characters.length) {

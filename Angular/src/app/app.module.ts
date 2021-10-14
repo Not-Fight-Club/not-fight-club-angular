@@ -43,7 +43,9 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
-
+    PrivPubFightComponent,
+    NewFightComponent,
+    CharacterPickerComponent
 
   ],
   imports: [

@@ -44,7 +44,7 @@ export class FightService {
     return this.http.post<Fight[]>(url, publicFight, this.httpOptions);
   }
   newPrivateFight(privateFight: Fight): Observable<Fight[]> {
-    const url = `${this.fightApiUrl}/fight/private`;
+    const url = `${this.fightApiUrl}/api/fight/private`;
     return this.http.post<Fight[]>(url, privateFight, this.httpOptions);
   }
   getLocations(): Observable<Location[]> {
