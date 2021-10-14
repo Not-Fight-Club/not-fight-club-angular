@@ -3,7 +3,7 @@
 
 <div class="form-group form-floating">
 
-  <select placeholder="character" class=" form-select" [id]="id" [name]="name">
+  <select placeholder="character" class=" form-select" [id]="id" [name]="name" (change)="onChange($event)">
     <option value="0">Random Character</option>
     <option *ngFor="let c of characters" [value]="c.characterId">{{c.name}} ({{c.baseform}})</option>
   </select>
