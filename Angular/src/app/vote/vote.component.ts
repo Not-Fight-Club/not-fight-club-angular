@@ -13,14 +13,14 @@ import { Fight } from '../interfaces/fight';
 export class VoteComponent implements OnInit {
 
   fighter1: Fighter = {
-    fighterId: 1,
-    fightId: 1,
+    fighterId: 2,
+    fightId: 2,
     characterId: 1,
     isWinner: false
   };
   fighter2: Fighter = {
-    fighterId: 2,
-    fightId: 1,
+    fighterId: 6,
+    fightId: 2,
     characterId: 2,
     isWinner: false
   };
@@ -28,6 +28,9 @@ export class VoteComponent implements OnInit {
   constructor(private http: HttpClient, private fightService: FightService) { }
 
   ngOnInit(): void {
+    this.tallyVotes(this.fighter1.fightId, this.fighter1.fighterId);
+    this.tallyVotes(this.fighter2.fightId, this.fighter2.fighterId);
+
   }
 
   submitVote(fighter: Fighter) {
@@ -39,5 +42,11 @@ export class VoteComponent implements OnInit {
     }
     console.log(`You, User ${vote.userId} have voted for FIGHTER _${vote.fighterId} in fight ${vote.fightId}`);
     this.fightService.castVote(vote).subscribe();
+  }
+
+  tallyVotes(fightId: number, fighterId: number) {
+    this.fightService.tallyVotes(fightId, fighterId).subscribe((tally) => {
+    console.log(`Votes for fighter ${fighterId}: ${tally}`)
+    });
   }
 }

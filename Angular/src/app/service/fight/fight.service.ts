@@ -36,4 +36,8 @@ export class FightService {
   castVote(vote: Vote): Observable<Vote> {
     return this.http.post<Vote>(`${this.fightApiUrl}/vote`, vote);
   }
+
+  tallyVotes(fightId: number, fighterId: number): Observable<number> { 
+    return this.http.get<number>(`${this.fightApiUrl}/votes/${fightId}/${fighterId}`);
+  }
 }
