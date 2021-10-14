@@ -19,6 +19,7 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TestingHTTPComponent } from './testing-http/testing-http.component';
 
 
 
@@ -40,6 +41,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
+    TestingHTTPComponent,
 
 
   ],
