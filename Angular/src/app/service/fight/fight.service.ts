@@ -23,12 +23,21 @@ export class FightService {
     return this.http.get<Fight>(`${this.fightApiUrl}/fight/current`).pipe(map((fight:Fight) => fight));
   }
 
+  getAllOngoingFights(): Observable<Fight[]> {
+    return this.http.get<Fight[]>(`${this.fightApiUrl}/fight/ongoing`);
+  }
+
   getFightById(fightId: number): Observable<Fight> {
     console.log(fightId);
     return this.http.get<Fight>(`${this.url}/${fightId}`).pipe(map((fight: Fight) => fight));
   }
 
+  getFightByType(fightType: boolean): Observable<Fight[]> {
+    console.log(fightType);
+    return this.http.get<Fight[]>(`${this.fightApiUrl}/fight/allbyFightType/${fightType}`);
+  }
+
   getFighters(fightId: number): Observable<Fighter[]> {
-    return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`);
+    return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fightersByFightID/${fightId}`);
   }
 }

@@ -1,0 +1,17 @@
+<div id="fights">
+  <button (click)="getOngoingFightsPrivate()">Private Fights</button>
+  <button (click)="getOngoingFightsPublic()">Public Fights</button>
+  <button (click)="getOngoingFights()">All Fights</button>
+  <div id="singleFight" *ngFor="let battle of fights"[routerLink]="['/fight/{{battle.fightId}}']">
+    <span *ngIf="battle.characterOne">{{battle.characterOne.name}}</span>&nbsp;
+    <span>VS</span>&nbsp;
+    <span *ngIf="battle.characterTwo">{{battle.characterTwo.name}}</span>&nbsp;
+    <span *ngIf="battle.characterOne">Location: {{battle.locationNavigation}}</span>&nbsp;
+    <span *ngIf="battle.characterOne">Weather: {{battle.weatherNavigation}}</span>&nbsp;
+    <span *ngIf="battle.characterOne">Public Fight: {{battle.publicFight}}</span>&nbsp;
+    <span *ngIf="battle.characterOne">Start Date: {{battle.startDate}}</span>&nbsp;
+    <span *ngIf="battle.characterOne">End Date: {{battle.endDate}}</span>
+  </div>
+</div>
+
+
