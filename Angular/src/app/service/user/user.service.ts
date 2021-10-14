@@ -13,7 +13,7 @@ import { Guid } from 'guid-typescript';
 export class UserService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://localhost:5000';
+  private url = 'https://localhost:5001';
 
   //private urlB = 'https://localhost:44326/'
   //create functions for http requests
@@ -46,20 +46,20 @@ export class UserService {
     return this.http.get<UserR>(`${this.url}/Login/${email}`)
   }
 
-  Register(user: UserR): Observable<UserR> {
+  Register(user: User): Observable<User> {
 
 
     console.log('Making call to controller:')
     console.log(user);
 
-    return this.http.post<UserR>(`${this.url}/Register`, user, {
+    return this.http.post<User>(`${this.url}/Register`, user, {
 
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
        
     })
-      .pipe(catchError(this.handleError<UserR>('register User', user)));
+      .pipe(catchError(this.handleError<User>('register User', user)));
   }
 
     private handleError<T>(operation:string, result?:T) {

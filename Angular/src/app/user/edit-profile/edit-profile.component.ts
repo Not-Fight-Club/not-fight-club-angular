@@ -90,7 +90,7 @@ export class EditProfileComponent implements OnInit {
       if (confirm("Are you sure you want to delete your profile?\nAll information associated to this user profile will be permanently deleted.")) {
         this.userService.deleteUser(id1).subscribe(
           id => {
-            this.router.navigate(['login']);
+            this.router.navigate(['**']); //send them back to the home page after deleting their account
           });
       }
     }

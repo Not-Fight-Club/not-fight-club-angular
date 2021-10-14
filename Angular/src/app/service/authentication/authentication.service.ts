@@ -35,7 +35,7 @@ export class AuthenticationService {
         sessionStorage.setItem('user', JSON.stringify(user));
         console.log(`Should've added to session already`)
           },
-      error: (err: Error) => console.log(`there was an error`)
+      error: (err: Error) => alert("There was an error logging in. Please try again")
     }
     OUser.subscribe(observer);
     

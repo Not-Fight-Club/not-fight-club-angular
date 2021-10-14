@@ -5,6 +5,7 @@ import { UserR } from '../interfaces/userR';
 import { UserService } from '../service/user/user.service';
 import { Guid } from "guid-typescript";
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-register',
@@ -28,15 +29,23 @@ export class RegisterComponent implements OnInit {
    //hash the passwords
    //pass the user to the authentication service
    //call the user service to send the information to the database
+
    
 
-    let userC: UserR = {
+    let userC: User = {
+   
       userId: null,
       userName: registerForm.value.username,
       pword: '',
       email: registerForm.value.email,
       dob: registerForm.value.dob,
-      bucks: 0
+      bucks: 0,
+      Active: true,
+      LastLogin: new Date(),
+      LoginStreak: 0,
+      ProfilePic: null,
+      RewardCollected: false
+
     };
 
     console.log(userC);
@@ -47,7 +56,7 @@ export class RegisterComponent implements OnInit {
       bcrypt.hash(registerForm.value.password, salt).then(hash => {
         userC.pword = hash;
         this.userService.Register(userC).subscribe(user => {
-          console.log(`response from Controller: ${user}`)
+          //console.log(`response from Controller: ${user.email} and ${user.userId}`)
           this.router.navigate(['login'])
         });
         //console.log(userC.pword);
