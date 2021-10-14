@@ -7,4 +7,5 @@ export interface UserR {
   email: string;
   dob: Date;
   bucks: number;
+ 
 }

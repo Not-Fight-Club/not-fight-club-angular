@@ -2,8 +2,8 @@
     <h4 class="pb-4 border-bottom">Edit Your Profile</h4>
     <div class="py-2">
       <form [formGroup]="formValue">
-        <div style="display: none;" class="row py-2">
-            <div  class="col-md-6"> <label for="userId">User ID:</label> <input type="text" formControlName="userId" class="bg-light form-control"> </div>
+        <div class="row py-2">
+            <div  class="col-md-6"> <label for="profilePic">Upload profile picture</label> <input type="file" (change)="onChange($event)" formControlName="profilePic" class="bg-light form-control"> </div>
         </div>
         <div class="row py-2">
             <div class="col-md-6"> <label for="username">Username</label> <input type="text" formControlName="userName" class="bg-light form-control"> </div>

@@ -19,6 +19,8 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductComponent } from './product/product.component';
+import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
 import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
 
 
@@ -41,8 +43,9 @@ import { CharacterPickerComponent } from './character/character-picker/character
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
+    ProductComponent,
+    UserPurchasesComponent
     CharacterPickerComponent,
-
 
   ],
   imports: [
