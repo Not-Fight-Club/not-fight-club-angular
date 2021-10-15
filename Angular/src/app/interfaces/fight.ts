@@ -4,7 +4,7 @@ import { Fighter } from "./fighter";
 
 export interface Fight {
   fightId: number;
-  Winner: number;
+ 
   Loser: number;
   Date: Date;
   startDate: Date;
