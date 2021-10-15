@@ -35,5 +35,5 @@ export class TimerComponent implements OnInit {
       clearInterval(this.timer);
     }
 
-  }, 500)
+  }, 800)
 }
