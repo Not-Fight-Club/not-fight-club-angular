@@ -25,7 +25,7 @@ export class FightComponent implements OnInit {
 
 
   fight: Fight | null = null;
-  fighters: Fighter[] | null = null;
+  fighters: Fighter[] = [];
 
   characters: Character[] = [];
   traits: Trait[] = [];
