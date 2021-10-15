@@ -39,8 +39,8 @@ export class FightService {
   getFighters(fightId: number): Observable<Fighter[]> {
     return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`);
   }
-  newPublicFight(publicFight: Fight): Observable<Fight[]> {
-    const url = `${this.fightApiUrl}/api/fight/public`;
+  newPublicFight(publicFight: any): Observable<Fight[]> {
+    const url = `${this.fightApiUrl}/fight/public`;
     return this.http.post<Fight[]>(url, publicFight, this.httpOptions);
   }
   newPrivateFight(privateFight: any): Observable<Fight[]> {
