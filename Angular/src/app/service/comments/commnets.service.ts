@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Wager } from '../../interfaces/wager';
+import { Comment } from '../../interfaces/comment';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BetsService {
+export class CommnetsService {
 
   constructor(private http: HttpClient) { }
 
-  // this is the url for Bets Microservice
   url: string = 'https://localhost:44327/api/Wagers/postbet';
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,21 +20,12 @@ export class BetsService {
     })
   };
 
-  // functions to make requests to the Bets Microservice
-  addWager(wager: Wager): Observable<Wager> {
-    console.log("addWager is working");
-
-    return this.http.post<Wager>(`${this.url}`, wager, this.httpOptions)
+  addCommnet(comment: Comment) {
+    return this.http.post<Comment>(`${this.url}`, comment, this.httpOptions)
       .pipe(
-        tap((newWager: Wager) => console.log(`Wager is added with userId=${newWager.userId}`)),
-        catchError(this.handleError<Wager>('Error on Wager'))
+        tap((newWager: Comment) => console.log(`Wager is added with userId=${newWager.userId}`)),
+        catchError(this.handleError<Comment>('Error on Wager'))
       );
-  }
-
-  // this function retrieves the amount of payouts
-  // and it takes fightId and fighterId, and returns a list of users and their payments
-  getPayouts() {
-
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -50,4 +41,5 @@ export class BetsService {
       return of(result as T);
     };
   }
+
 }
