@@ -21,7 +21,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Run tests while building image
-FROM build as test
+# FROM build as test
 RUN apt-get update && apt-get install -y \
     fonts-liberation \
     gconf-service \
@@ -56,6 +56,7 @@ RUN apt-get update && apt-get install -y \
     libxtst6 \
     xdg-utils
 RUN npm install puppeteer --save-dev
+RUN npm install karma-junit-reporter --save-dev
 COPY ./src .
 RUN npm ci
 RUN npm run test
