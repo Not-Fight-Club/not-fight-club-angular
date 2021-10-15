@@ -109,8 +109,8 @@
           Required.
         </div>
       </div>
-      <app-character-picker id="characterselect1"></app-character-picker>
-      <app-character-picker id="characterselect2"></app-character-picker>
+      <app-character-picker label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)"></app-character-picker>
+      <app-character-picker label="Character 2" id="characterselect2" (selectedChar)="setChar2($event)"></app-character-picker>
       <!--
   <div class="form-group form-floating">
     <select class="form-select" id="char" name="char"
@@ -129,12 +129,12 @@
       <!-- adding ngModel to the end of the input will allow us to pass the values to the class -->
       <!--#name="ngModel" allows us to pass data from the input to the validators-->
       <div class="form-check form-check-inline">
-        <input value="true" type="radio" class="form-check-input" id="public" name="public"
+        <input [value]="true" type="radio" class="form-check-input" id="public" name="public"
                required ngModel #public="ngModel">
         <label class="form-check-label" for="public">public</label>
       </div>
       <div class="form-check form-check-inline">
-        <input value="false" type="radio" class="form-check-input" id="private" name="public"
+        <input [value]="false" type="radio" class="form-check-input" id="private" name="public"
                required ngModel #private="ngModel" checked>
         <label class="form-check-label" for="private">private</label>
       </div>

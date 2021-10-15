@@ -5,6 +5,7 @@ import { Fight } from '../interfaces/fight';
 import { FightService } from '../service/fight/fight.service';
 import { Location } from '../interfaces/location';
 import { Weather } from '../interfaces/weather';
+import { Character } from '../interfaces/character';
 
 @Component({
   selector: 'app-priv-pub-fight',
@@ -17,6 +18,9 @@ export class PrivPubFightComponent implements OnInit {
 
   locations: Location[] = [];
   weathers: Weather[] = [];
+
+  character1: Character | undefined;
+  character2: Character | undefined;
 
 
   
@@ -35,24 +39,38 @@ export class PrivPubFightComponent implements OnInit {
 
   }
 
-  savePrivate(fight: Fight): void {
+  setChar1(c: Character | undefined) {
+    console.log("setchar1: ", c);
+    this.character1 = c;
+  }
+
+  setChar2(c: Character | undefined) {
+    console.log("setchar2: ", c);
+    this.character2 = c;
+  }
+
+  savePrivate(fight: any): void {
     this.fightService.newPrivateFight(fight).subscribe(fights => { });
 
   }
-  savePublic(fight: Fight): void {
+  savePublic(fight: any): void {
     this.fightService.newPublicFight(fight).subscribe(fights => { });
 
   }
   onSubmit(fightForm: NgForm) {
 
     console.log(fightForm);
-    let fight: Fight = {
+    let fight: any = {
       fightId: 0,
       CreatorId: fightForm.value.creator,
       StartDate:fightForm.value.startdate,
       EndDate: fightForm.value.enddate,
       Location: fightForm.value.location,
-      Weather: fightForm.value.weather
+      Weather: fightForm.value.weather,
+      Characters: [
+        this.character1,
+        this.character2
+      ]
     };
 
     if (fightForm.value.public) {
