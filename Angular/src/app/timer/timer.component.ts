@@ -10,14 +10,22 @@ export class TimerComponent implements OnInit {
   hours: number = 0;
   minutes: number = 0;
   seconds: number = 0;
+  timer:any=null;
   @Input() endTime:Date = new Date();
   constructor() { }
 
   ngOnInit(): void {
-
+    this.timer=setInterval(()=>this.updateTimer(),500)
   }
+ ngOnDestroy():void{
+   if(this.timer){
+    clearInterval(this.timer);
+   }
+ }
 
-  timer: any = setInterval(() => {
+  //timer: any= setInterval( 800)
+updateTimer():void{
+  console.log(this);
     let currentTime = new Date().getTime();
     let targetTime = new Date(this.endTime).getTime();
     let timeDifference = targetTime - currentTime;
@@ -33,7 +41,7 @@ export class TimerComponent implements OnInit {
       this.minutes = 0;
       this.seconds = 0;
       clearInterval(this.timer);
-    }
-
-  }, 800)
+      this.timer=null;
+  }
+}
 }
