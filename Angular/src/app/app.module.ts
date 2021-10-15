@@ -20,6 +20,9 @@ import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TestingHTTPComponent } from './testing-http/testing-http.component';
+import { ProductComponent } from './product/product.component';
+import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
+import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
 
 
 
@@ -42,7 +45,9 @@ import { TestingHTTPComponent } from './testing-http/testing-http.component';
     HomeComponent,
     ArchiveComponent,
     TestingHTTPComponent,
-
+    ProductComponent,
+    UserPurchasesComponent,
+    CharacterPickerComponent
 
   ],
   imports: [

@@ -1,0 +1,23 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of productList | paginate: {id: 'list_pagination', itemsPerPage: 5, currentPage: page, totalItems: totalRecords}">
+        <td>{{purchase.product.productName}}</td>
+        <td>{{purchase.product.productDescription}}</td>
+        <td>{{purchase.product.productPrice}}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+  <div id="page--controls">
+    <pagination-controls id="list_pagination" directionlinks="true" (pageChange)="page =$event">
+    </pagination-controls>
+  </div>
+</div>
