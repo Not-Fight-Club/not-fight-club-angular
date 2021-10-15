@@ -7,5 +7,9 @@ export interface UserR {
   email: string;
   dob: Date;
   bucks: number;
+  active: boolean;
+  lastLogin: Date;
+  loginStreak: number;
+  profile: string;
  
 }

@@ -32,10 +32,10 @@ export class AuthenticationService {
     let observer = {
       next: (user: UserR) =>{
         //put the user in session storage
-        sessionStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('user', JSON.stringify(user)); //maybe I'm overwriting with wrong data
         console.log(`Should've added to session already`)
           },
-      error: (err: Error) => console.log(`there was an error`)
+      error: (err: Error) => alert("There was an error logging in. Please try again")
     }
     OUser.subscribe(observer);
     

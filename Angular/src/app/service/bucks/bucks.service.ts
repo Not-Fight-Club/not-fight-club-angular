@@ -4,13 +4,17 @@ import { UserService } from '../user/user.service';
 import { User } from '../../interfaces/user';
 import { Observable, of } from 'rxjs';
 import { Guid } from 'guid-typescript';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BucksService {
 
-  constructor(private router: Router, private userService: UserService) { }
+  private url = 'https://localhost:5001'
+
+  constructor(private router: Router, private userService: UserService, private http: HttpClient) { }
 
   //Adjust the number of bucks a user has. The changeBucks can be positive or negative.
   adjustBucks(changeBucks: number): Observable<boolean> {
@@ -40,5 +44,9 @@ export class BucksService {
     sessionStorage.setItem('user', userString);
     //true is returned
     return of(true);
+  }
+
+  GetReward(user: User): Observable<number> {
+    return this.http.post<number>(`${this.url}/GetReward`, user)
   }
 }

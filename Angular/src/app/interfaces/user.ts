@@ -11,7 +11,7 @@ export interface User {
   active: boolean;
   lastLogin: Date;
   loginStreak: number;
-  profilePic: string;
+  profilePic: string | null;
   rewardCollected: boolean;
 
   //userId: Guid | null;

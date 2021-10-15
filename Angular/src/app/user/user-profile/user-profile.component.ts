@@ -24,25 +24,31 @@ export class UserProfileComponent implements OnInit {
   
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-     console.log(params);
-      this.userService.getUserById(params["userId"]).subscribe(user => {
-       console.log(user);
-        this.user = user;
-        this.image = user.profilePic;
+     //console.log(params);
+     // this.userService.getUserById(params["userId"]).subscribe(user => {
+     //  console.log(user);
+
+
+      // this.user = user;
+      //this.image = user.profilePic;
+
+      //get the user from session storage instead
+      let id = sessionStorage.getItem('user');
+      if (id != null) {
+        let sessionUser = JSON.parse(id);
+        this.user = sessionUser;
+        this.image = sessionUser.profilePic;
+        //console.log(this.user);
+        //console.log(this.user?.userId)
+      }
     })
 
-      // get the user from session storage instead
-      // let id = sessionStorage.getItem('user');
-      // if (!id) {
-      //   return
-      // } else {
-      //   let id1 = JSON.parse(id);
-      //   this.user = id1;
-      //   console.log(this.user);
-      //   console.log(this.user?.userId)
-      // }
+   
       
-   })
+         
+       
+      
+   //})
   }
 
   Toggle(elem: HTMLAnchorElement) {
