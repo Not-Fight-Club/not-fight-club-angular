@@ -40,6 +40,12 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: PublishTestResults@2
+      displayName: Publish Test Results *.xml
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/TESTS-*.xml'
 
     - upload: manifests
       artifact: manifests
