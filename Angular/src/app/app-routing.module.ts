@@ -15,7 +15,7 @@ import { FightComponent } from './fight/fight.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { BetsComponent } from './bets/bets.component'
 import { ProductComponent } from './product/product.component';
-
+import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'fight/:fightId', component: FightComponent },
   { path: 'fight', component: FightComponent },
+  { path: 'fights', component: OngoingfightsComponent },
   { path: 'archive', component: ArchiveComponent },
 
   { path: 'bets', component: BetsComponent },

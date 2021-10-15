@@ -26,21 +26,29 @@ export class FightService {
     return this.http.get<Fight>(`${this.fightApiUrl}/fight/current`).pipe(map((fight: Fight) => fight));
   }
 
+  getAllOngoingFights(): Observable<Fight[]> {
+    return this.http.get<Fight[]>(`${this.fightApiUrl}/fight/ongoing`);
+  }
+
   getFightById(fightId: number): Observable<Fight> {
     console.log(fightId);
     return this.http.get<Fight>(`${this.fightApiUrl}/fight/${fightId}`).pipe(map((fight: Fight) => fight));
   }
 
-  getFighters(fightId: number): Observable<Fighter[]> {
-    return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`).pipe(map((participants: Fighter[]) => participants));
+  getFightByType(fightType: boolean): Observable<Fight[]> {
+    console.log(fightType);
+    return this.http.get<Fight[]>(`${this.fightApiUrl}/fight/allbyFightType/${fightType}`);
   }
 
-  castVote(vote: Vote): Observable<Vote> {
-    return this.http.post<Vote>(`${this.fightApiUrl}/vote`, vote);
-  }
+    castVote(vote: Vote): Observable<Vote> {
+        return this.http.post<Vote>(`${this.fightApiUrl}/vote`, vote);
+    }
 
-  tallyVotes(fightId: number, fighterId: number): Observable<number> { 
-    return this.http.get<number>(`${this.fightApiUrl}/votes/${fightId}/${fighterId}`);
+    tallyVotes(fightId: number, fighterId: number): Observable<number> {
+        return this.http.get<number>(`${this.fightApiUrl}/votes/${fightId}/${fighterId}`);
+    }
+    getFighters(fightId: number): Observable<Fighter[]> {
+        return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`);
   }
   //get fights by userID
   getFightsByUserId(userID: string): Observable<Fight[]>{
