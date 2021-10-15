@@ -19,7 +19,13 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { BetsComponent } from './bets/bets.component';
+import { FightListComponent} from './fight-list/fight-list.component'
+import { ProductComponent } from './product/product.component';
+import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
 import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
+import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component';
+import { VoteComponent } from './vote/vote.component';
 import { PrivPubFightComponent } from './priv-pub-fight/priv-pub-fight.component';
 import { NewFightComponent } from './new-fight/new-fight.component';
 
@@ -43,6 +49,11 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     CharacterComponent,
     HomeComponent,
     ArchiveComponent,
+    BetsComponent,
+    FightListComponent,
+    ProductComponent,
+    UserPurchasesComponent,
+
     PrivPubFightComponent,
     NewFightComponent,
     CharacterPickerComponent
@@ -55,7 +66,7 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
