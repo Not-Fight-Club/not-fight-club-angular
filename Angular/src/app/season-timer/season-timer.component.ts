@@ -10,14 +10,21 @@ export class SeasonTimerComponent implements OnInit {
   hours: number = 0;
   minutes: number = 0;
   seconds: number = 0;
+  timer: any = null;
   @Input() endTime: Date = new Date();
   constructor() { }
 
   ngOnInit(): void {
-
+    this.timer = setInterval(() => this.updateTimer(), 500);
   }
 
-  timer: any = setInterval(() => {
+  ngOnDestroy(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  updateTimer(): void {
     let currentTime = new Date().getTime();
     let targetTime = new Date(this.endTime).getTime();
     let timeDifference = targetTime - currentTime;
@@ -34,6 +41,5 @@ export class SeasonTimerComponent implements OnInit {
       this.seconds = 0;
       clearInterval(this.timer);
     }
-
-  }, 800)
+  }
 }

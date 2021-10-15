@@ -7,6 +7,8 @@ import { User } from '../interfaces/user';
 import { ProductService } from '../service/product/product.service';
 import { UserService } from '../service/user/user.service';
 import { SeasonTimerComponent } from '../season-timer/season-timer.component';
+import { Season } from '../interfaces/season';
+import { SeasonService } from '../service/season/season.service';
 
 @Component({
   selector: 'app-product',
@@ -16,13 +18,20 @@ import { SeasonTimerComponent } from '../season-timer/season-timer.component';
 export class ProductComponent implements OnInit {
 
   products: Product[] = [];
-  constructor(private productService: ProductService, private userService: UserService) { }
+  endTime: Date = new Date();
+
+  constructor(private productService: ProductService, private userService: UserService, private seasonService: SeasonService) { }
 
   ngOnInit(): void {
     this.productService.productList().subscribe(x => {
       console.log(x);
       this.products = x;
     });
+
+    this.seasonService.getCurrentSeason().subscribe(x => {
+      console.log(x);
+      this.endTime = x.seasonalEndDate;
+    })
   }
 
   buyProductButton(productId: number) {
