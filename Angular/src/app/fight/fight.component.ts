@@ -10,6 +10,10 @@ import { WeaponService } from '../service/weapon/weapon.service';
 import { Character } from '../interfaces/character';
 import { Weapon } from '../interfaces/weapon';
 import { TimerComponent } from '../timer/timer.component';
+//ADD ACTIVATED ROUTE 
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-fight',
@@ -27,12 +31,72 @@ export class FightComponent implements OnInit {
   traits: Trait[] = [];
   weapons: Weapon[] = [];
 
-  constructor(private fightService: FightService, private characterService: CharacterService, private traitService: TraitService, private weaponService: WeaponService) { }
+  endTime: Date = new Date();
+
+  constructor(  private route: ActivatedRoute,
+    private router: Router,private fightService: FightService, private characterService: CharacterService, private traitService: TraitService, private weaponService: WeaponService) { }
 
   ngOnInit(): void {
-    this.getCurrentFight()
-  }
+    //this.getCurrentFight()
+  this.route.paramMap.pipe(
+      switchMap(
+        (params: ParamMap) =>
+          this.fightService.getFightById(parseInt(params.get('fightId')!))
+      )
+    ).subscribe(x=>{
+      this.fight=x;
+      this.getFighters(this.fight.fightId);
+      this.endTime = this.fight.endDate;
+      //alert(this.endTime);
+    });
 
+    /*
+    setTimeout(() => {
+      if (this.fight?.fightId != null) {
+        this.getFighters(this.fight.fightId);
+      }
+      else {
+        console.log("We got a problem.")
+      }
+    }, 1000)
+
+    setTimeout(() => {
+      if (this.fighters != null) {
+        this.getCharacter(this.fighters[0].characterId, 0);
+      }
+      else {
+        console.log("We got another problem.");
+      }
+    }, 2000)
+
+    setTimeout(() => {
+      if (this.fighters != null) {
+        this.getCharacter(this.fighters[1].characterId, 1);
+      }
+      else {
+        console.log("We got another problem.");
+      }
+    }, 3000)
+
+    setTimeout(() => {
+      this.getTrait(this.characters[0].traitId, 0);
+    }, 4000)
+
+    setTimeout(() => {
+      this.getTrait(this.characters[1].traitId, 1);
+    }, 5000)
+
+    setTimeout(() => {
+      this.getWeapon(this.characters[0].weaponId, 0);
+    }, 6000)
+
+    setTimeout(() => {
+      this.getWeapon(this.characters[1].weaponId, 1);
+    }, 7000)
+
+    */
+  }
+/*
   getCurrentFight() {
     return this.fightService.getCurrentFight().subscribe(fight => {
       console.log(fight);
@@ -40,7 +104,7 @@ export class FightComponent implements OnInit {
       this.getFighters(fight.fightId);
     });
   }
-
+*/
   getFighters(fightId: number) {
     return this.fightService.getFighters(fightId).subscribe(fighters => {
       console.log(fighters);

@@ -6,9 +6,8 @@ export interface Fight {
   fightId: number;
  
   Loser: number;
-  Date: Date;
-  startDate: Date;
   endDate: Date;
+  startDate: Date;
   Result: string;
   Location: number;
   locationNavigation: string;

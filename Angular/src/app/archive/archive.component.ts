@@ -116,13 +116,15 @@ export class ArchiveComponent implements OnInit {
     //get characters for past fights using characterId 
     //make combination list
   
-  getFightsByUserId(id: string):void{
+  // getFightsByUserId(id: string):void{
   
-    this.fightService.getFightsByUserId(id).subscribe(fights =>{
-      console.log(fights);
-      this.userFightList = fights;
-    });
-  }
+  //   this.fightService.getFightsByUserId(id).subscribe(fights =>{
+  //     console.log(fights);
+  //     this.userFightList = fights;
+  //   });
+  // }
+
+
   loadUserId(){
     this.userId = sessionStorage.getItem('userId');
   }

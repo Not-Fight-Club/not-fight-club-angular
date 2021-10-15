@@ -51,8 +51,10 @@ export class FightService {
         return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`);
   }
   //get fights by userID
+  /*
   getFightsByUserId(userID: string): Observable<Fight[]>{
     //console.log(fightId);
     return this.http.get<FightWithCharacter[]>(`${this.url}/byuser/${userID}`).pipe(map((fights: FightWithCharacter[]) => fights));
   }
+  */
 }
