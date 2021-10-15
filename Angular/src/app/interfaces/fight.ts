@@ -5,10 +5,10 @@ import { Fighter } from "./fighter";
 export interface Fight {
   fightId: number;
  
-  Loser: number;
   endDate: Date;
   startDate: Date;
   Result: string;
+  CreatorId:number
   Location: number;
   locationNavigation: string;
   weatherNavigation: string;

@@ -26,6 +26,9 @@ import { UserPurchasesComponent } from './user/user-purchases/user-purchases.com
 import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
 import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component';
 import { VoteComponent } from './vote/vote.component';
+import { PrivPubFightComponent } from './priv-pub-fight/priv-pub-fight.component';
+import { NewFightComponent } from './new-fight/new-fight.component';
+
 
 
 
@@ -50,8 +53,10 @@ import { VoteComponent } from './vote/vote.component';
     FightListComponent,
     ProductComponent,
     UserPurchasesComponent,
-    CharacterPickerComponent,
 
+    PrivPubFightComponent,
+    NewFightComponent,
+    CharacterPickerComponent
 
   ],
   imports: [

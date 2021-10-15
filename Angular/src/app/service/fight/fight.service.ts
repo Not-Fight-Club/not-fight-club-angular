@@ -5,8 +5,11 @@ import { Fighter } from '../../interfaces/fighter';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { Weather } from '../../interfaces/weather';
+import { Location } from '../../interfaces/location';
 import { Vote } from '../../interfaces/vote';
 import { FightWithCharacter } from 'src/app/interfaces/fightWithCharacter';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,11 @@ export class FightService {
 
   constructor(private http: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": 'application/json'
+    })
+  };
 
   //private urlB = 'https://localhost:5003'
 
@@ -49,6 +57,22 @@ export class FightService {
     }
     getFighters(fightId: number): Observable<Fighter[]> {
         return this.http.get<Fighter[]>(`${this.fightApiUrl}/current/fighters/${fightId}`);
+  }
+  newPublicFight(publicFight: any): Observable<Fight[]> {
+    const url = `${this.fightApiUrl}/fight/public`;
+    return this.http.post<Fight[]>(url, publicFight, this.httpOptions);
+  }
+  newPrivateFight(privateFight: any): Observable<Fight[]> {
+    const url = `${this.fightApiUrl}/fight/private`;
+    return this.http.post<Fight[]>(url, privateFight, this.httpOptions);
+  }
+  getLocations(): Observable<Location[]> {
+    const url = `${this.fightApiUrl}/Location/All`;
+    return this.http.get<Location[]>(url);
+  }
+  getWeather(): Observable<Weather[]> {
+    const url = `${this.fightApiUrl}/Weather/All`;
+    return this.http.get<Weather[]>(url);
   }
   //get fights by userID
   /*
