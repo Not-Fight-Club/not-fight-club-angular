@@ -24,7 +24,8 @@ export class UserService {
 
   getUserById(id: Guid): Observable<User>{
     console.log(id);
-    return this.http.get<User>(`${this.url}/api/user/` + id).pipe(map((user:User)=>user))
+    return this.http.get<User>(`${this.url}/api/user/` + id)
+      //.pipe(map((user: User) => user))
   }
 
   editProfile(id: Guid, user: User): Observable<User> {

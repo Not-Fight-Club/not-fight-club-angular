@@ -90,8 +90,8 @@ export class EditProfileComponent implements OnInit {
           // this.userService.getUserById(this.formValue.value.userId);
           console.log(data.pword);
           console.log(data.profilePic);
-          alert("changes will take effect on next login");
-          sessionStorage.setItem('user', JSON.stringify(data));
+       
+          //sessionStorage.setItem('user', JSON.stringify(data));
           this.router.navigateByUrl(`/users/${this.formValue.value.userId}`)
       })
     

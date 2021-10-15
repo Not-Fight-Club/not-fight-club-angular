@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.stringify(user)); 
   }
 
 }
