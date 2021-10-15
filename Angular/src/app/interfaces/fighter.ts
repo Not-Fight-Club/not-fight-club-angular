@@ -3,4 +3,6 @@ export interface Fighter {
   fightId: number;
   characterId: number;
   votes: number;
+  isWinner:boolean;
+  
 }
