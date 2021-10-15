@@ -3,5 +3,5 @@ export interface Fighter {
   fightId: number;
   characterId: number;
   isWinner: boolean;
-  //votes: number;
+  votes: number;
 }
