@@ -40,11 +40,11 @@ export class RegisterComponent implements OnInit {
       email: registerForm.value.email,
       dob: registerForm.value.dob,
       bucks: 0,
-      Active: true,
-      LastLogin: new Date(),
-      LoginStreak: 0,
-      ProfilePic: null,
-      RewardCollected: false
+      active: true,
+      lastLogin: new Date(),
+      loginStreak: 0,
+      profilePic: null,
+      rewardCollected: false
 
     };
 

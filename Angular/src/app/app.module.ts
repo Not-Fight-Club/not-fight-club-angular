@@ -44,7 +44,7 @@ import { CharacterPickerComponent } from './character/character-picker/character
     HomeComponent,
     ArchiveComponent,
     ProductComponent,
-    UserPurchasesComponent
+    UserPurchasesComponent,
     CharacterPickerComponent,
 
   ],
