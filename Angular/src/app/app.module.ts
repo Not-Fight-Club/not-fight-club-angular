@@ -21,6 +21,11 @@ import { ArchiveComponent } from './archive/archive.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductComponent } from './product/product.component';
 import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
+import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -40,6 +45,8 @@ import { UserPurchasesComponent } from './user/user-purchases/user-purchases.com
     ArchiveComponent,
     ProductComponent,
     UserPurchasesComponent
+    CharacterPickerComponent,
+
   ],
   imports: [
     HttpClientModule,

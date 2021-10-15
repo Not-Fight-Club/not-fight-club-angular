@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { User } from 'src/app/interfaces/user';
 import { UserProduct } from 'src/app/interfaces/userProduct';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { UserProduct } from 'src/app/interfaces/userProduct';
 export class ProductService {
 
   constructor(private http: HttpClient) { }
-  private url = 'https://localhost:5007'
+  private url = environment.productsApiUrl;
 
   productList(): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.url}/api/product`)
