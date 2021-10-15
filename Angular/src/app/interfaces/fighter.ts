@@ -2,7 +2,6 @@ export interface Fighter {
   fighterId: number;
   fightId: number;
   characterId: number;
-  votes: number;
-  isWinner:boolean;
-  
+  isWinner: boolean;
+  //votes: number;
 }

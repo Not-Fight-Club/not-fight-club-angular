@@ -24,6 +24,7 @@ import { FightListComponent} from './fight-list/fight-list.component'
 import { ProductComponent } from './product/product.component';
 import { UserPurchasesComponent } from './user/user-purchases/user-purchases.component';
 import { CharacterPickerComponent } from './character/character-picker/character-picker.component';
+import { VoteComponent } from './vote/vote.component';
 
 
 
@@ -51,6 +52,7 @@ import { CharacterPickerComponent } from './character/character-picker/character
     ProductComponent,
     UserPurchasesComponent,
     CharacterPickerComponent,
+    VoteComponent,
 
 
   ],

@@ -18,18 +18,23 @@ export class TimerComponent implements OnInit {
 
   }
 
-  timer: number = setInterval(() => {
-    let currentTime = new Date().getTime();
-    let targetTime = new Date("Oct 1, 2021 17:00:00").getTime();
-    let timeDifference = targetTime - currentTime;
+  setTimer(targetYear: number, targetMonth: number, targetDay: number, targetHours: number, targetMinutes: number, targetSeconds: number) {
+    let timer = setInterval(() => {
+      let currentTime = new Date().getTime();
+      let targetTime = new Date(targetYear, targetMonth, targetDay,
+        targetHours, targetMinutes, targetSeconds).getTime();
+      let timeDifference = targetTime - currentTime;
 
-    this.days = Math.floor(timeDifference / 86400000);
-    this.hours = Math.floor((timeDifference % 86400000) / 3600000);
-    this.minutes = Math.floor((timeDifference % 3600000) / 60000);
-    this.seconds = Math.floor((timeDifference % 60000) / 1000);
+      this.days = Math.floor(timeDifference / 86400000);
+      this.hours = Math.floor((timeDifference % 86400000) / 3600000);
+      this.minutes = Math.floor((timeDifference % 3600000) / 60000);
+      this.seconds = Math.floor((timeDifference % 60000) / 1000);
 
-    if (timeDifference <= 0) {
-      clearInterval(this.timer);
-    }
-  })
+      if (timeDifference <= 0) {
+        clearInterval(timer);
+      }
+    })
+  }
+
+  
 }
