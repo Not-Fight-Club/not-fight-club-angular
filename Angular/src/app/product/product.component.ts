@@ -18,7 +18,6 @@ import { SeasonService } from '../service/season/season.service';
 export class ProductComponent implements OnInit {
 
   products: Product[] = [];
-  endTime: Date = new Date();
 
   constructor(private productService: ProductService, private userService: UserService, private seasonService: SeasonService) { }
 
@@ -27,11 +26,6 @@ export class ProductComponent implements OnInit {
       console.log(x);
       this.products = x;
     });
-
-    this.seasonService.getCurrentSeason().subscribe(x => {
-      console.log(x);
-      this.endTime = x.seasonalEndDate;
-    })
   }
 
   buyProductButton(productId: number) {
