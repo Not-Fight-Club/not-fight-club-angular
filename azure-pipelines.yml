@@ -46,7 +46,7 @@ stages:
       inputs:
         testResultsFormat: 'JUnit'
         testResultsFiles: '*.xml'
-        searchFolder: '$(Build.ArtifactStagingDirectory)/coverage/Angular'
+        searchFolder: './coverage/Angular'
 
     - upload: manifests
       artifact: manifests
