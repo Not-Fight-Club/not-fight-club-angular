@@ -2,7 +2,8 @@ export interface Fight {
   fightId: number;
  
   Loser: number;
-  Date: Date;
+  endDate: Date;
+  startDate: Date;
   Result: string;
   Location: number;
   weatherNavigation:string;
