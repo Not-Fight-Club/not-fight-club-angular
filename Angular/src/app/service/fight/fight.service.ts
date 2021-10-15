@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Vote } from '../../interfaces/vote';
+import { FightWithCharacter } from 'src/app/interfaces/fightWithCharacter';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,11 @@ export class FightService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:5000/fight';
-  private urlB = 'http://localhost:5000'
-  private fightApiUrl = environment.fightsApiUrl;
 
+  //private urlB = 'https://localhost:5003'
+
+  private fightApiUrl = environment.fightsApiUrl;
+  private url = `${this.fightApiUrl}/fight`;
   getCurrentFight(): Observable<Fight> {
     return this.http.get<Fight>(`${this.fightApiUrl}/fight/current`).pipe(map((fight: Fight) => fight));
   }
@@ -39,5 +41,10 @@ export class FightService {
 
   tallyVotes(fightId: number, fighterId: number): Observable<number> { 
     return this.http.get<number>(`${this.fightApiUrl}/votes/${fightId}/${fighterId}`);
+  }
+  //get fights by userID
+  getFightsByUserId(userID: string): Observable<Fight[]>{
+    //console.log(fightId);
+    return this.http.get<FightWithCharacter[]>(`${this.url}/byuser/${userID}`).pipe(map((fights: FightWithCharacter[]) => fights));
   }
 }
