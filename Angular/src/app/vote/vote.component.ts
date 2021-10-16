@@ -12,16 +12,18 @@ import { Fight } from '../interfaces/fight';
 })
 export class VoteComponent implements OnInit {
 
-  fighter1: Fighter = {
+  @Input() fighter1: Fighter = {
     fighterId: 2,
     fightId: 2,
     characterId: 1,
+    votes: 0,
     isWinner: false
   };
-  fighter2: Fighter = {
+  @Input() fighter2: Fighter = {
     fighterId: 6,
     fightId: 2,
     characterId: 2,
+    votes: 0,
     isWinner: false
   };
 

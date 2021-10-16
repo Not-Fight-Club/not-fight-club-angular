@@ -55,6 +55,8 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     FightListComponent,
     ProductComponent,
     UserPurchasesComponent,
+    VoteComponent,
+    OngoingfightsComponent,
     PrivPubFightComponent,
     NewFightComponent,
     CharacterPickerComponent

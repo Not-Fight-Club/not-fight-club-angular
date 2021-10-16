@@ -15,14 +15,16 @@ export class BetsComponent implements OnInit {
     fighterId: 1,
     fightId: 1,
     characterId: 10,
-    votes: 100
+    votes: 100,
+    isWinner: false
   }
 
   fighter2: Fighter = {
     fighterId: 2,
     fightId: 1,
     characterId: 9,
-    votes: 109
+    votes: 109,
+    isWinner: false
   }
 
   // Wager to be send
