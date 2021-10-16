@@ -1,0 +1,160 @@
+<div class="register-wrapper">
+<div class="card">
+  <div class="card-body">
+    <form class="form-register" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <!-- <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">  -->
+      <h1 class="h3 mb-3 fw-normal">Please Create Your Fight</h1>
+
+      <div class="form-group form-floating">
+        <input type="text" class="form-control" id="creatorId" placeholder="creatorId" name="creator"
+               minlength="3" maxlength="50" required ngModel #creatorIdInput="ngModel" autofocus>
+        <label for="floatingInput">Creator</label>
+      </div>
+
+      <div *ngIf="creatorIdInput.invalid && (creatorIdInput.dirty || creatorIdInput.touched)" class="alert alert-danger">
+
+        <div *ngIf="creatorIdInput.errors?.required">
+          Required.
+        </div>
+        <div *ngIf="creatorIdInput.errors?.minlength">
+          Must be at least 3 characters long.
+        </div>
+        <div *ngIf="creatorIdInput.errors?.maxlength">
+          Must be less than 20 characters long.
+        </div>
+        <div *ngIf="creatorIdInput.errors?.pattern">
+          Cannot contain spaces, numbers or special characters
+        </div>
+
+
+      </div>
+
+
+      <!--<div class="form-floating">
+    <input type="text" class="form-control" id="floatingLname" placeholder="Last Name" name="lname" minlength="3" maxlength="20" pattern="[A-Za-z]{3,21}" required
+           ngModel #lname="ngModel">
+    <label for="floatingInput">Last Name</label>
+  </div>
+  <div *ngIf="lname.invalid && (lname.dirty || lname.touched)" class="alert alert-danger">
+
+    <div *ngIf="lname.errors?.required">
+      Required.
+    </div>
+    <div *ngIf="lname.errors?.minlength">
+      Must be at least 3 characters long.
+    </div>
+    <div *ngIf="lname.errors?.maxlength">
+      Must be less than 20 characters long.
+    </div>
+    <div *ngIf="lname.errors?.pattern">
+      Cannot contain spaces, numbers or special characters
+    </div>
+
+  </div>-->
+
+
+
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="datetime-local" class="form-control" id="startDate" placeholder=" " name="startdate" required
+               ngModel #startDate="ngModel">
+      </div>
+      <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="alert alert-danger">
+
+        <div *ngIf="startDate.errors?.required">
+          Required.
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="datetime-local" class="form-control" id="endDate" placeholder=" " name="enddate" required
+               ngModel #endDate="ngModel">
+      </div>
+      <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="alert alert-danger">
+
+        <div *ngIf="endDate.errors?.required">
+          Required.
+        </div>
+
+      </div>
+
+
+      <div class="form-group form-floating">
+        <select class="form-select" id="location" name="location"
+                #location="ngModel" required ngModel>
+          <option *ngFor="let l of locations" [value]="l.locationId">{{l.location1}}</option>
+        </select>
+        <label for="location">Locations</label>
+      </div>
+      <div *ngIf="location.invalid && (location.dirty || location.touched)" class="alert alert-danger">
+
+        <div *ngIf="location.errors?.required">
+          Required.
+        </div>
+      </div>
+
+
+      <div class="form-group form-floating">
+        <select class="form-select" id="weather" name="weather"
+                #weather="ngModel" required ngModel>
+          <option *ngFor="let w of weathers" [value]="w.weatherId">{{w.description}}</option>
+        </select>
+        <label for="weather">Weather</label>
+      </div>
+      <div *ngIf="weather.invalid && (weather.dirty || weather.touched)" class="alert alert-danger">
+
+        <div *ngIf="weather.errors?.required">
+          Required.
+        </div>
+      </div>
+      <app-character-picker label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)"></app-character-picker>
+      <app-character-picker label="Character 2" id="characterselect2" (selectedChar)="setChar2($event)"></app-character-picker>
+      <!--
+  <div class="form-group form-floating">
+    <select class="form-select" id="char" name="char"
+            #char="ngModel" required ngModel>
+      <option *ngFor="let c of characters" value="c.CharacterId">{c.name}</option>
+    </select>
+    <label for="character">Character</label>
+  </div>
+  <div *ngIf="character.invalid && (character.dirty || character.touched)" class="alert alert-danger">
+
+    <div *ngIf="character.errors?.required">
+      Required.
+    </div>
+  </div>
+    -->
+      <!-- adding ngModel to the end of the input will allow us to pass the values to the class -->
+      <!--#name="ngModel" allows us to pass data from the input to the validators-->
+      <div class="form-check form-check-inline">
+        <input [value]="true" type="radio" class="form-check-input" id="public" name="public"
+               required ngModel #public="ngModel">
+        <label class="form-check-label" for="public">public</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input [value]="false" type="radio" class="form-check-input" id="private" name="public"
+               required ngModel #private="ngModel" checked>
+        <label class="form-check-label" for="private">private</label>
+      </div>
+
+      <div *ngIf="public.invalid && (public.dirty || public.touched)" class="alert alert-danger">
+
+        <div *ngIf="public.errors?.required">
+          Required.
+        </div>
+
+      </div>
+
+      <!-- <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div> -->
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Ready To Rumble</button>
+
+    </form>
+  </div>
+</div>
+</div>
