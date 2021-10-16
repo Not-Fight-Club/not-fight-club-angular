@@ -59,6 +59,7 @@ RUN npm install puppeteer --save-dev
 RUN npm install karma-junit-reporter --save-dev
 # COPY ./src .
 RUN npm ci
+WORKDIR /usr/src/app/dist/Angular
 RUN npm run test --if-present=true
 
 
