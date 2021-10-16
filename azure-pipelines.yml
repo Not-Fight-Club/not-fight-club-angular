@@ -41,12 +41,11 @@ stages:
         tags: |
           $(tag)
     - task: PublishTestResults@2
-      displayName: Publish Test Results *.xml
+      displayName: 'Publish Test Results .xml'
       condition: succeededOrFailed()
       inputs:
         testResultsFormat: 'JUnit'
-        testResultsFiles: '*.xml'
-        searchFolder: './coverage/Angular'
+        testResultsFiles: '**/TESTS-*.xml'
 
     - upload: manifests
       artifact: manifests
