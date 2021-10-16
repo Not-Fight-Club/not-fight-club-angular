@@ -126,7 +126,12 @@ export class ArchiveComponent implements OnInit {
 
 
   loadUserId(){
-    this.userId = sessionStorage.getItem('userId');
+    let userStr = sessionStorage.getItem('user');
+    if (!userStr) {
+      return;
+    }
+    let user = JSON.parse(userStr);
+    this.userId = user.userId;
   }
 
   //get all past fihgts
