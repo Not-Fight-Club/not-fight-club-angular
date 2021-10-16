@@ -20,19 +20,19 @@ export class TestingHTTPComponent implements OnInit {
   makeCallApi():void{
     //for deployed api, must call http (no s), use exposed port in dockerfile
     //local must be https
-    this.http.get(environment.bets+":5001/weatherforecast/FEtoAPI",{responseType: 'text'}).subscribe(word => this.testapi = word)
+    this.http.get(environment.betsApiUrl+":5001/weatherforecast/FEtoAPI",{responseType: 'text'}).subscribe(word => this.testapi = word)
     
     
   }
 
   makeCallApi2():void{
     
-    this.http.get(environment.bets+":5001/weatherforecast/apiToapi",{responseType: 'text'}).subscribe(word => this.testapi2 = word)
+    this.http.get(environment.betsApiUrl+":5001/weatherforecast/apiToapi",{responseType: 'text'}).subscribe(word => this.testapi2 = word)
     
   }
 
   makeDBCall():void{
-    this.http.get(environment.bets+":5001/weatherforecast/dbtest",{responseType: 'text'}).subscribe(word => this.testdb = word)
+    this.http.get(environment.betsApiUrl+":5001/weatherforecast/dbtest",{responseType: 'text'}).subscribe(word => this.testdb = word)
   }
   
 }
