@@ -16,7 +16,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
   private url = environment.usersApiUrl;
 
-  //private urlB = 'https://localhost:44326/'
   //create functions for http requests
   UserList(): Observable<User[]> {
     return this.http.get<User[]>(`${this.url}/api/user`)

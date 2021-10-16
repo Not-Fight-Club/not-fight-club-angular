@@ -13,7 +13,6 @@ export class TraitService {
 
   constructor(private http: HttpClient) { }
 
-  //private url = 'http://localhost:5000';
   private url = environment.charactersApiUrl;
   //create functions for http requests
 
