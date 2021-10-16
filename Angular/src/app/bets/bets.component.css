@@ -1,0 +1,22 @@
+.container {
+   color: white;
+}
+.fighter{
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 1rem;
+  background-color: rgb(77, 77, 180);
+}
+
+.fighter:hover {
+  background-color: rgb(219, 158, 43);
+  color: white
+}
+
+.btn-bet {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(77, 77, 180);
+  color: white;
+}

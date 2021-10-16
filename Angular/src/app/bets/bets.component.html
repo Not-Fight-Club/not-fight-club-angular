@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-2 fighter" (click)="doFirst()">
+      {{fighter1.fighterId}}
+    </div>
+    <div class="col-md-1">
+      VS
+    </div>
+    <div class="col-md-2 fighter" (click)="doSecond()">
+      {{fighter2.fighterId}}
+    </div>
+
+    <div class="col-md-6">
+      <button class="btn-bet px-3 py-1 " (click)="activateBet()"> Bet on fight </button>
+    </div>
+  </div>
+</div>

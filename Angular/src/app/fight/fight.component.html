@@ -6,6 +6,8 @@
     {{weapons[1].description}}</span>
 </div>
 
-<app-timer></app-timer>
+<app-timer [endTime]="endTime"></app-timer>
 
 <app-chat></app-chat>
+
+<app-vote [fighter1]="fighters[0]" [fighter2]="fighters[1]"></app-vote>
