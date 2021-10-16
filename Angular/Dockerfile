@@ -59,7 +59,7 @@ RUN npm install puppeteer --save-dev
 RUN npm install karma-junit-reporter --save-dev
 # COPY ./src .
 RUN npm ci
-RUN npm run test --if-present
+RUN npm run test --if-present=true
 
 
 # Stage 3: Serve app with nginx server
