@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { of } from 'rxjs';
+import { Discount } from '../interfaces/discount';
 import { Product } from '../interfaces/product';
 import { User } from '../interfaces/user';
 import { ProductService } from '../service/product/product.service';
@@ -50,6 +51,15 @@ export class ProductComponent implements OnInit {
   buyProductButton(productId: number) {
 
     // get user from session
+
+    let userString = sessionStorage.getItem('user');
+    console.log(userString);
+    if (userString === null) {
+      alert("You are not logged in.");
+      return
+    }
+    let user = JSON.parse(userString);
+
     // let userString: string | null = localStorage.getItem('user');
     // if (userString === null) {
     //   alert("You are not logged in.");
@@ -59,28 +69,31 @@ export class ProductComponent implements OnInit {
     // let user= {UserId: Guid.create(), UserName: "username", Email: "email", Dob: Date.now(), Bucks: 50, Pword: "password", Active: true, LastLogin: Date.now()}
 
     //dummy userid that exists on db
-    let id: Guid = Guid.parse("EA0EF870-5D07-42A7-B5E6-1F6BF8706415");
+    //let id: Guid = Guid.parse("EA0EF870-5D07-42A7-B5E6-1F6BF8706415");
+
     this.productService.getProductById(productId).subscribe(data => {
       console.log(data);
 
-      this.productService.buyProduct(id, data).subscribe(obj => {
+      this.productService.buyProduct(user.userId, data).subscribe(obj => {
         //call userService to update the bucks
         console.log(obj);
-        //Edit user bucks accordingly and send post request to edit the bucks.
-        // console.log(data);
-        // if (data.productDiscount) {
-        //   let finalPrice = data.productPrice - ((data.productDiscount / 100) * data.productPrice);
-        // }
-        // if (userString !== null) {
-        //   user.bucks = user.bucks - Math.Round(finalPrice);
-        // }
-        // this.userService.editProfile(obj.userId, user).subscribe();
+        var finalPrice = Discount(data.productDiscount, data.productPrice);
+
+        if (userString !== null) {
+          user.bucks = user.bucks - finalPrice;
+        }
+        window.alert(`You just bought ${data.productName} at discounted price ${finalPrice}. Total bucks remaining: ${user.bucks}`);
+        this.userService.editProfile(obj.userId, user).subscribe(obj => {
+          sessionStorage.setItem('user', JSON.stringify(obj));
+        });
       });
     })
+
 
     // let user= {userId: Guid.create(), userName: "username", email: "email", dob: "2000-01-01", bucks: 50, pword: "password" }
 
     // this.productService.buyProduct(productId, user).subscribe();
+
   }
 
 }

@@ -13,9 +13,13 @@ import { CharacterComponent } from './character/character/character.component';
 import { HomeComponent } from './home/home.component';
 import { FightComponent } from './fight/fight.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { NewFightComponent } from './new-fight/new-fight.component';
+import { BetsComponent } from './bets/bets.component'
 import { ProductComponent } from './product/product.component';
+import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component';
 
 const routes: Routes = [
+  { path: 'fights/new', component: NewFightComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
@@ -24,7 +28,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'fight/:fightId', component: FightComponent },
   { path: 'fight', component: FightComponent },
+  { path: 'fights', component: OngoingfightsComponent },
   { path: 'archive', component: ArchiveComponent },
+
+  { path: 'bets', component: BetsComponent },
+
   { path: 'product', component: ProductComponent},
 
   //turn off authguard so we can manually access all components. --briana
@@ -44,6 +52,7 @@ const routes: Routes = [
   { path: 'users/:userId', component: UserProfileComponent},
 
   //remove this code for finished project --briana
+
 
 
 
