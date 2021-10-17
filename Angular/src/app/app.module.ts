@@ -28,10 +28,7 @@ import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component'
 import { VoteComponent } from './vote/vote.component';
 import { PrivPubFightComponent } from './priv-pub-fight/priv-pub-fight.component';
 import { NewFightComponent } from './new-fight/new-fight.component';
-
-
-
-
+import { SeasonTimerComponent } from './season-timer/season-timer.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +54,8 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     OngoingfightsComponent,
     PrivPubFightComponent,
     NewFightComponent,
-    CharacterPickerComponent
+    CharacterPickerComponent,
+    SeasonTimerComponent,
 
   ],
   imports: [

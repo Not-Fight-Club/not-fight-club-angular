@@ -1,3 +1,5 @@
+<app-timer></app-timer>
+
 <ul>
   <li *ngFor="let product of products">
     {{product.productName}} --- ${{product.productPrice}} <button (click)="buyProductButton(product.productId)">Buy</button>
