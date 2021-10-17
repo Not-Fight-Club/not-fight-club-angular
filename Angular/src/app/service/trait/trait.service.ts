@@ -13,8 +13,7 @@ export class TraitService {
 
   constructor(private http: HttpClient) { }
 
-  private urlCharacter = environment.charactersApiUrl;
-  
+  private url = environment.charactersApiUrl;
   //create functions for http requests
 
   TraitList(): Observable<Trait[]> {

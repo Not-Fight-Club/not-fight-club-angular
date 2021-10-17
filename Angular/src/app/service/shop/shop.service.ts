@@ -18,7 +18,7 @@ export class ShopService {
   ProductList(user: User): Observable<any> {
     //get user data from calling ts
     console.log(user.userId);
-    return this.http.get<any>(`${this.url}/api/UserProduct/PreviousPurchases/${user.userId}`)
+    return this.http.get<any>(environment.shopApiUrl+`/api/UserProduct/PreviousPurchases/${user.userId}`)
   }
 
   AddProduct(product: Product): Observable<Product> {
