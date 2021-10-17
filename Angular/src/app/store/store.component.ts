@@ -60,7 +60,9 @@ export class StoreComponent implements OnInit {
             productName: newTrait,
             productPrice: 2000, //need to change so that this number is dynamic to the cost presented
             productDescription: 'Trait',
-            productDiscount: 0
+            productDiscount: 0,
+            categoryId: 1,
+            category: "Trait"
           }
           this.shopService.AddProduct(product).subscribe(addedProduct => {
             this.shopService.AddUserProduct(addedProduct)?.subscribe(addedUserProduct => {

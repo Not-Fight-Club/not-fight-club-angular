@@ -12,7 +12,7 @@
       <p class="fs-5 mb-4" *ngIf="user">You have {{user.bucks}} !Bucks</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <a class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" routerLink="/product">View Seasonal Items</a>
-        <!--<button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>-->
+        <button type="button" (click)="getRich()" class="btn btn-outline-light btn-lg px-4">Get Rich Quick</button>
       </div>
     </div>
   </div>

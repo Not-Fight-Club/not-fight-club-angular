@@ -5,26 +5,78 @@
 <div class="container px-4 py-5" id="custom-cards">
   <h2 class="pb-2 border-bottom">Seasonal Items</h2>
 
-  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" *ngFor="let product of products">
-    <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <div class="col"  *ngFor="let product of locations">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1598983870677-01e066a0b901?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80'); ">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
           <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">   {{product.productName}} </h2>
           <h4 class="align-items-center pt-5 mb-4 lh-1">{{product.productDescription}}</h4>
+          <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
           <ul class="d-flex list-unstyled mt-auto">
             <li class="me-auto">
-              <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
+              <img src="https://images.unsplash.com/photo-1604172459579-bdf5acfddca7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
             </li>
             <li class="d-flex align-items-center">
-              <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3" /></svg>
               <small>Price: {{product.productPrice}} !Bucks</small>
+            </li>
+            <li class="d-flex align-items-center me-3">
+              <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill" /></svg>
+              <small>Type: {{product.category}}</small>
             </li>
           </ul>
         </div>
       </div>
     </div>
+  
+
+  <div class="col"  *ngFor="let product of traits">
+    <div class="card card-cover h-100 overflow-hidden text-white  rounded-5 shadow-lg" style="background-color: rgb(189 82 5)">
+      <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> {{product.productName}}</h2>
+        <h4 class="align-items-center pt-5 mb-4 lh-1">{{product.productDescription}}</h4>
+        <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
+        <ul class="d-flex list-unstyled mt-auto">
+          <li class="me-auto">
+            <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+          </li>
+          <li class="d-flex align-items-center me-3">
+            <small>Price: {{product.productPrice}} !Bucks</small>
+          </li>
+          <li class="d-flex align-items-center">
+           
+            <small>Type: {{product.category}}</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col"  *ngFor="let product of weapons">
+    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80');">
+      <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{product.productName}}</h2>
+        <h4 class="align-items-center pt-5 mb-4 lh-1">{{product.productDescription}}</h4>
+        <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
+
+        <ul class="d-flex list-unstyled mt-auto">
+          <li class="me-auto">
+            <img src="https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+          </li>
+          <li class="d-flex align-items-center me-3">
+            <small>Price: {{product.productPrice}} !Bucks</small>
+          </li>
+          <li class="d-flex align-items-center">
+            <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3" /></svg>
+            <small>Type: {{product.category}}</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-   
+  </div>
+
+
 
 <!--<ul>
   <li *ngFor="let product of products">

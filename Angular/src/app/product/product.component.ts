@@ -16,12 +16,34 @@ import { SeasonTimerComponent } from '../season-timer/season-timer.component';
 export class ProductComponent implements OnInit {
 
   products: Product[] = [];
+  locations: Product[] = [];
+  weapons: Product[] = [];
+  traits: Product[] = [];
   constructor(private productService: ProductService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.productService.productList().subscribe(x => {
       console.log(x);
-      this.products = x;
+      //put each product into a different list based on category
+      x.forEach(elem => {
+        if (elem.categoryId != null) {
+          if (elem.categoryId == 2) {
+            //add the element to the location list
+            this.locations.push(elem);
+          }
+          else if (elem.categoryId == 1) {
+            this.traits.push(elem);
+          }
+          else if (elem.categoryId == 5) {
+            this.weapons.push(elem);
+          }
+        } else {
+          this.products.push(elem);
+        }
+       
+      })
+      //this.products = x;
+      console.log(`this.products`)
     });
   }
 

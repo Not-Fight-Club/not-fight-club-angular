@@ -6,5 +6,7 @@ export interface Product {
   productName: string,
   productPrice: number,
   productDescription: string,
-  productDiscount: number
+  productDiscount: number,
+  categoryId: number | null,
+  category: string|null
 }
