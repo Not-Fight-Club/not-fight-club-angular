@@ -17,19 +17,19 @@ export class TraitService {
   //create functions for http requests
 
   TraitList(): Observable<Trait[]> {
-    return this.http.get<Trait[]>(`${this.urlCharacter}/api/trait`)
+    return this.http.get<Trait[]>(`${this.url}/api/trait`)
   }
 
 
   getTraitById(id: number): Observable<Trait> {
-    return this.http.get<Trait>(`${this.urlCharacter}/Trait/` + id).pipe(map((trait: Trait) => trait))
+    return this.http.get<Trait>(`${this.url}/Trait/` + id).pipe(map((trait: Trait) => trait))
   }
 
   AddTrait(trait: Trait): Observable<Trait> {
     console.log('Making call to controller:')
     console.log(trait);
 
-    return this.http.post<Trait>(`${this.urlCharacter}/api/Trait`, trait, {
+    return this.http.post<Trait>(`${this.url}/api/Trait`, trait, {
 
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

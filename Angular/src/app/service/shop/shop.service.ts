@@ -14,7 +14,7 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  private url = environment.shopsApiUrl;
+  private url = environment.shopApiUrl;
   ProductList(user: User): Observable<any> {
     //get user data from calling ts
     console.log(user.userId);
