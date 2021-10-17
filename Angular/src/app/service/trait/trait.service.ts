@@ -13,24 +13,24 @@ export class TraitService {
 
   constructor(private http: HttpClient) { }
 
-  //private url = 'http://localhost:5000';
-  private url = environment.charactersApiUrl;
+  private urlCharacter = environment.charactersApiUrl;
+  
   //create functions for http requests
 
   TraitList(): Observable<Trait[]> {
-    return this.http.get<Trait[]>(`${this.url}/api/trait`)
+    return this.http.get<Trait[]>(`${this.urlCharacter}/api/trait`)
   }
 
 
   getTraitById(id: number): Observable<Trait> {
-    return this.http.get<Trait>(`${this.url}/Trait/` + id).pipe(map((trait: Trait) => trait))
+    return this.http.get<Trait>(`${this.urlCharacter}/Trait/` + id).pipe(map((trait: Trait) => trait))
   }
 
   AddTrait(trait: Trait): Observable<Trait> {
     console.log('Making call to controller:')
     console.log(trait);
 
-    return this.http.post<Trait>(`${this.url}/api/Trait`, trait, {
+    return this.http.post<Trait>(`${this.urlCharacter}/api/Trait`, trait, {
 
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -39,6 +39,7 @@ export class TraitService {
     })
       .pipe(catchError(this.handleError<Trait>('add new Trait', trait)));
   }
+
 
   private handleError<T>(operation: string, result?: T) {
     return (error: any): Observable<T> => {

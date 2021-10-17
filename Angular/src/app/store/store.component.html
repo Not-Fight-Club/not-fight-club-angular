@@ -1,17 +1,82 @@
-<header>
+<!--<header>
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h1 class="display-4 fw-normal">This is not a store</h1>
-    <p class="fs-5" *ngIf="user">!Bucks: ${{user.bucks}}</p>
+    <h1 class="display-4 fw-normal">Welcome to the !Store</h1>
+    <p class="fs-5" *ngIf="user"> You have !Bucks: ${{user.bucks}}</p>
   </div>
+</header>-->
+<header>
+<div class="bg-dark text-secondary px-4 py-5 text-center">
+  <div class="py-5">
+    <h1 class="display-5 fw-bold text-white">Welcome to the !Shop</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="fs-5 mb-4" *ngIf="user">You have {{user.bucks}} !Bucks</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" routerLink="/product">View Seasonal Items</a>
+        <!--<button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>-->
+      </div>
+    </div>
+  </div>
+</div>
 </header>
 
-<main class="store-wrapper">
+<main>
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Add A Trait</h2>
+        <p class="lead">
+          Would you like to add a trait to the database? Now is your time to shine! For <span id="costAddTrait">2000</span>
+          !Bucks, you can add any new trait you want! Just make sure the trait isn't
+          gamebreaking or X-rated. We need to keep it PG-13.
+          <button (click)="addTrait()">Purchase</button>
+        </p>
+      </div>
+      <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h6 class="display-5">Add A Weather Condition</h6>
+        <p class="lead">
+          Would you like to add a trait to the database? Now is your time to shine! For <span id="costAddTrait">2000</span>
+          !Bucks, you can add any new trait you want! Just make sure the trait isn't
+          gamebreaking or X-rated. We need to keep it PG-13.
+          <button (click)="addTrait()">Purchase</button>
+        </p>
+      </div>
+      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+  </div>
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Add A Location</h2>
+        <p class="lead">
+          Would you like to add a trait to the database? Now is your time to shine! For <span id="costAddTrait">2000</span>
+          !Bucks, you can add any new trait you want! Just make sure the trait isn't
+          gamebreaking or X-rated. We need to keep it PG-13.
+          <button (click)="addTrait()">Purchase</button>
+        </p>
+      </div>
+      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>
+    <!--<div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Edit A Characters Form</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    </div>-->
+  </div>
+</main>
+
+<!--<main class="store-wrapper">-->
   <!--I've deleted the reroll character section.-->
   <!--This button is only used for debugging purposes-->
-  <button (click)="getRich()">Add 2000 !Bucks</button>
+  <!--<button (click)="getRich()">Add 2000 !Bucks</button>-->
 
   <!-- need to change to getting seasonals from database-->
-  <h2><a type="submit" routerLink="/product">View Halloween Deals</a></h2>
+  <!--<h2><a routerLink="/product">View Halloween Deals</a></h2>
 
   <h2>Add trait to database</h2>
   <p>Would you like to add a trait to the database? Now is your time to shine! For <span id="costAddTrait">2000</span>
@@ -30,4 +95,4 @@
   <h2>Edit character weapon</h2>
   <p>Don't like the weapon your character has? Now you can change it for just <span id="costEditWeapon">100</span>
     !Bucks. <button (click)="editCharacterWeapon()" disabled>Coming Soon</button></p>
-</main>
+</main>-->

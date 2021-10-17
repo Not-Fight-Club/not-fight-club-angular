@@ -5,6 +5,8 @@ import { Trait } from '../interfaces/trait';
 import { BucksService } from '../service/bucks/bucks.service';
 import { TraitService } from '../service/trait/trait.service';
 import { User } from 'src/app/interfaces/user';
+import { Product } from '../interfaces/product';
+import { ShopService } from '../service/shop/shop.service';
 
 @Component({
   selector: 'app-store',
@@ -15,7 +17,7 @@ export class StoreComponent implements OnInit {
 
   user: User | null = null;
 
-  constructor(private bucksService: BucksService, private traitService: TraitService, private router: Router) { }
+  constructor(private bucksService: BucksService, private traitService: TraitService, private router: Router, private shopService: ShopService) { }
 
   ngOnInit(): void {
     let userString: string | null = sessionStorage.getItem('user');
@@ -44,16 +46,41 @@ export class StoreComponent implements OnInit {
     //If the new trait is null, don't do anything.
     if (newTrait === null || newTrait === "") return;
     //Confirm that the user wants to add that trait
-    let choice: boolean = confirm(`Are you sure you want to add the new trait "${newTrait}"? It will cost 2000 not bucks.`);
+    let choice: boolean = confirm(`Are you sure you want to add the new trait "${newTrait}"? It will cost 2000 !Bucks.`);
     if (!choice) return;
     //get user's bucks, and reduce by 2000.
     this.bucksService.adjustBucks(-2000).subscribe(canAfford => {
       if (canAfford) {
         //Add the trait to the database
         if (newTrait !== null) {
-          let trait: Trait = { traitId: 0, description: newTrait };
-          this.traitService.AddTrait(trait).subscribe(trait => console.log(trait));
-          alert("Your trait has been added to the database.")
+          
+          let product: Product = {
+            productId: 0,
+            seasonalId: null,
+            productName: newTrait,
+            productPrice: 2000, //need to change so that this number is dynamic to the cost presented
+            productDescription: 'Trait',
+            productDiscount: 0
+          }
+          this.shopService.AddProduct(product).subscribe(addedProduct => {
+            this.shopService.AddUserProduct(addedProduct)?.subscribe(addedUserProduct => {
+              //finally send the new trait to the character db
+              //if trait ids are going to match up to shop db
+             // let trait: Trait = { traitId: addedProduct.productId, description: addedProduct.productName };
+
+              //if trait ids will be independent of each other
+              let trait: Trait = { traitId: 0, description: addedProduct.productName }
+
+              this.traitService.AddTrait(trait)
+                .subscribe(
+                  trait => { alert(`${trait.description} has been added to the database.`) },
+                  () => { alert(`${trait.description} could not be added`)}
+
+              );
+                   
+            
+            })
+          })
         }
       }
     })
