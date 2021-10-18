@@ -110,7 +110,7 @@
         </div>
       </div>
     -->
-        <app-weather-picker></app-weather-picker>
+        <app-weather-picker (selectedWeather)="setWeather($event)"></app-weather-picker>
 
         <app-character-picker label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)">
         </app-character-picker>
