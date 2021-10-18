@@ -40,9 +40,9 @@ stages:
           checkLatest: true
       - script: npm install
         displayName: 'npm install'
-        workingDirectory: Angular
       - script: npx ng build --prod
         displayName: 'ng build'
+        workingDirectory: Angular
       - script: |
           cd Angular
           apt-get update && apt-get install -y \
