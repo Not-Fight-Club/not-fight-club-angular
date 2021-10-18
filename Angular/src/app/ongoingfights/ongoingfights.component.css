@@ -1,0 +1,13 @@
+#fights{
+    text-align: center;
+}
+
+#singleFight{
+  background-color: white;
+  border: solid 4px;
+  border-radius: 100px;
+  max-width: 1400px;
+  margin-left: 360px;
+  margin-top: 10px;
+  padding: 10px;
+}

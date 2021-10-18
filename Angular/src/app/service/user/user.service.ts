@@ -5,6 +5,7 @@ import { User } from 'src/app/interfaces/user';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserR } from '../../interfaces/userR';
 import { Guid } from 'guid-typescript';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,23 @@ import { Guid } from 'guid-typescript';
 export class UserService {
 
   constructor(private http: HttpClient) { }
-  private url = 'http://localhost:5000';
+  private url = environment.usersApiUrl;
 
-  //private urlB = 'https://localhost:44326/'
   //create functions for http requests
   UserList(): Observable<User[]> {
     return this.http.get<User[]>(`${this.url}/api/user`)
   }
 
   getUserById(id: Guid): Observable<User>{
-    return this.http.get<User>(`${this.url}/users/` + id).pipe(map((user:User)=>user))
+    console.log(id);
+    return this.http.get<User>(`${this.url}/api/user/` + id).pipe(map((user:User)=>user))
   }
 
   editProfile(id: Guid, user: User): Observable<User> {
     console.log(user);
     // let userInput = { id : id1, UserId: user.userId, UserName: user.userName, Pword: user.pword, Email: user.email, Dob: user.dob, Bucks: user.bucks }
     // console.log(userInput);
-    return this.http.put<User>(`${this.url}/edit-profile/${user.userId}`, user, {
+    return this.http.put<User>(`${this.url}/edit-profile/${id}`, user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
@@ -38,7 +39,7 @@ export class UserService {
 
   deleteUser(id: Guid): Observable<User>  {
     console.log(id);
-    return this.http.delete<User>(this.url + '/users/' + id);
+    return this.http.delete<User>(this.url + '/api/user/' + id);
   }
 
   Login(email: string): Observable<UserR> {

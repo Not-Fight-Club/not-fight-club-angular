@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Weapon } from '../../interfaces/weapon';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class WeaponService {
   constructor(private http: HttpClient) { }
 
   private thirdPartyurl = 'https://random-word-form.herokuapp.com/random/noun';
-  private url = 'http://localhost:5000';
+  private url = environment.charactersApiUrl;
 
 
   RandomWeapon() {
