@@ -13,9 +13,9 @@ export class SeasonService {
   constructor(private http: HttpClient) { }
 
   private seasonApiUrl = environment.productsApiUrl;
-  private url = `${this.seasonApiUrl}/season`;
+  private url = `${this.seasonApiUrl}/api/Season`;
 
   getCurrentSeason(): Observable<Season> {
-    return this.http.get<Season>(`${this.seasonApiUrl}/season/now`).pipe(map((season: Season) => season))
+    return this.http.get<Season>(`${this.url}/now`).pipe(map((season: Season) => season))
   }
 }
