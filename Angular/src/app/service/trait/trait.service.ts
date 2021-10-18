@@ -13,7 +13,6 @@ export class TraitService {
 
   constructor(private http: HttpClient) { }
 
-  //private url = 'http://localhost:5000';
   private url = environment.charactersApiUrl;
   //create functions for http requests
 
@@ -39,6 +38,7 @@ export class TraitService {
     })
       .pipe(catchError(this.handleError<Trait>('add new Trait', trait)));
   }
+
 
   private handleError<T>(operation: string, result?: T) {
     return (error: any): Observable<T> => {

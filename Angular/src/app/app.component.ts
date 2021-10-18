@@ -29,7 +29,7 @@ export class AppComponent {
     if (!id) {
       return
     } else {
-      let id1 = JSON.parse(id).userId
+      let id1 = JSON.parse(id).userId.value
       console.log(id1)
       this.router.navigateByUrl(`/users/${id1}`)
     }

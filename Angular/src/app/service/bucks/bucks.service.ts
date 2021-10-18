@@ -30,13 +30,14 @@ export class BucksService {
     //Adjusts the user's bucks
     user.bucks += changeBucks;
     //checks if the user's bucks is less than 20 and returns false if less than 20 bucks are left.
+    //this should check if the user's bucks is less than the cost of the item not 20
     if (user.bucks < 20) {
       alert("Sorry, but you can't afford this.");
       return of(false);
     }
 
     //How do I make it so that the user's data is updated in the database?
-    this.userService.editProfile(Guid.create(), user).subscribe(user => console.log(user.bucks));
+    //this.userService.editProfile(Guid.create(), user).subscribe(user => console.log(user.bucks));
 
     //turns the user object back into a string
     userString = JSON.stringify(user);

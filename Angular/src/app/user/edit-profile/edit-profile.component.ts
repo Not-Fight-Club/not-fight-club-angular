@@ -91,7 +91,7 @@ export class EditProfileComponent implements OnInit {
           console.log(data.pword);
           console.log(data.profilePic);
        
-          //sessionStorage.setItem('user', JSON.stringify(data));
+          sessionStorage.setItem('user', JSON.stringify(data));
           this.router.navigateByUrl(`/users/${this.formValue.value.userId}`)
       })
     
