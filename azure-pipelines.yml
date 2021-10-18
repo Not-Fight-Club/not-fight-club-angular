@@ -82,8 +82,7 @@ stages:
           npm install puppeteer --save-dev
           npm install karma-junit-reporter --save-dev
           npm ci
-          cd /usr/src/app/dist/Angular
-          npm ng test --watch=false --karma-config karma.conf.ci.js
+          npm run test
         displayName: Install test dependencies and run tests
       - task: PublishTestResults@2
         displayName: Publish Test Results
