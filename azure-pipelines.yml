@@ -43,7 +43,9 @@ stages:
           npm install
           ng build --prod
         displayName: 'npm install and build'
+        workingDirectory: Angular
       - script: |
+          cd Angular
           apt-get update && apt-get install -y \
           fonts-liberation \
           gconf-service \
