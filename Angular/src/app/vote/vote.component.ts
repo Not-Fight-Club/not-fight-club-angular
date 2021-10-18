@@ -27,6 +27,9 @@ export class VoteComponent implements OnInit {
     isWinner: false
   };
 
+  @Input() fighterName1: string = "";
+  @Input() fighterName2: string = "";
+
   constructor(private http: HttpClient, private fightService: FightService) { }
 
   ngOnInit(): void {
@@ -40,8 +43,11 @@ export class VoteComponent implements OnInit {
       voteId: 0,
       fightId: fighter.fightId,
       fighterId: fighter.fighterId,
-      userId: Math.floor(Math.random() * 100)
+      userId: 0
     }
+    let userStr = sessionStorage.getItem("user");
+    if (!userStr) { return }
+    vote.userId = JSON.parse(userStr).userId;
     console.log(`You, User ${vote.userId} have voted for FIGHTER _${vote.fighterId} in fight ${vote.fightId}`);
     this.fightService.castVote(vote).subscribe();
   }
