@@ -2,16 +2,10 @@
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-<<<<<<< HEAD
 trigger:
 - dev_ops
 # pr:
 # - main
-=======
-trigger: none
-pr:
-- main
->>>>>>> origin/main
 
 resources:
 - repo: self
@@ -52,39 +46,6 @@ stages:
         workingDirectory: Angular
       - script: |
           cd Angular
-          apt-get update && apt-get install -y \
-          fonts-liberation \
-          gconf-service \
-          libappindicator1 \
-          libasound2 \
-          libatk1.0-0 \
-          libcairo2 \
-          libcups2 \
-          libfontconfig1 \
-          libgbm-dev \
-          libgdk-pixbuf2.0-0 \
-          libgtk-3-0 \
-          libicu-dev \
-          libjpeg-dev \
-          libnspr4 \
-          libnss3 \
-          libpango-1.0-0 \
-          libpangocairo-1.0-0 \
-          libpng-dev \
-          libx11-6 \
-          libx11-xcb1 \
-          libxcb1 \
-          libxcomposite1 \
-          libxcursor1 \
-          libxdamage1 \
-          libxext6 \
-          libxfixes3 \
-          libxi6 \
-          libxrandr2 \
-          libxrender1 \
-          libxss1 \
-          libxtst6 \
-          xdg-utils
           npm install puppeteer --save-dev
           npm install karma-junit-reporter --save-dev
           npm ci
@@ -120,7 +81,6 @@ stages:
     - upload: manifests
       artifact: manifests
 
-<<<<<<< HEAD
 # - stage: Deploy
 #   displayName: Deploy stage
 #   dependsOn: Build
@@ -153,38 +113,3 @@ stages:
 #                 $(imagePullSecret)
 #               containers: |
 #                 $(containerRegistry)/$(imageRepository):$(tag)
-=======
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    pool:
-      vmImage: $(vmImageName)
-    environment: 'NotFightClubnotfightclubangular.default'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: KubernetesManifest@0
-            displayName: Create imagePullSecret
-            inputs:
-              action: createSecret
-              secretName: $(imagePullSecret)
-              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-
-          - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
-            inputs:
-              action: deploy
-              manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
-              imagePullSecrets: |
-                $(imagePullSecret)
-              containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
->>>>>>> origin/main
-
