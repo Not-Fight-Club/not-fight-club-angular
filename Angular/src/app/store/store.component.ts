@@ -7,6 +7,9 @@ import { TraitService } from '../service/trait/trait.service';
 import { User } from 'src/app/interfaces/user';
 import { Product } from '../interfaces/product';
 import { ShopService } from '../service/shop/shop.service';
+import { Location } from '../interfaces/location';
+import { FightService } from '../service/fight/fight.service';
+import { Weather } from '../interfaces/weather';
 
 @Component({
   selector: 'app-store',
@@ -17,7 +20,7 @@ export class StoreComponent implements OnInit {
 
   user: User | null = null;
 
-  constructor(private bucksService: BucksService, private traitService: TraitService, private router: Router, private shopService: ShopService) { }
+  constructor(private bucksService: BucksService, private traitService: TraitService, private router: Router, private shopService: ShopService, private fightService: FightService) { }
 
   ngOnInit(): void {
     let userString: string | null = sessionStorage.getItem('user');
@@ -35,7 +38,134 @@ export class StoreComponent implements OnInit {
     })
   }
 
+  addLocation(): void {
+    let userString = sessionStorage.getItem('user');
+    if (userString === null) {
+      alert("You are not logged in.");
+      return
+    }
+    let currentUser = JSON.parse(userString);
+    if (currentUser.bucks < 2000) {
+      alert("You do not have enough bucks to make this purchase!");
+      return
+    }
+    //Prompt the user for a location
+    let newLocation: string | null = prompt("Type in a new location for the database.");
+    //If the trait is invalid, you will be alerted that the trait is invalid, and you'll have to type it in again.
+    //For now, all the traits are valid. True will be replaced with a function to validate the traits
+    while (!true) {
+      newLocation = prompt(`Sorry, ${newLocation} is not a legal location. Type in a new trait to add to the database.`);
+    }
+    //If the new trait is null, don't do anything.
+    if (newLocation === null || newLocation === "") return;
+    //Confirm that the user wants to add that trait
+    let choice: boolean = confirm(`Are you sure you want to add the new location "${newLocation}"? It will cost 2000 !Bucks.`);
+    if (!choice) return;
+    //get user's bucks, and reduce by 2000.
+    this.bucksService.adjustBucks(-2000).subscribe(canAfford => {
+      if (canAfford) {
+        //Add the trait to the database
+        if (newLocation !== null) {
+          
+          let product: Product = {
+            productId: 0,
+            seasonalId: null,
+            productName: newLocation,
+            productPrice: 2000, //need to change so that this number is dynamic to the cost presented
+            productDescription: 'Location',
+            productDiscount: 0,
+            categoryId: 2,
+            category: "Location"
+          }
+          this.shopService.AddProduct(product).subscribe(addedProduct => {
+            this.shopService.AddUserProduct(addedProduct)?.subscribe(addedUserProduct => {
+              //finally send the new trait to the character db
+              //if trait ids are going to match up to shop db
+             // let trait: Trait = { traitId: addedProduct.productId, description: addedProduct.productName };
+
+              //if trait ids will be independent of each other
+              let location: Location = { locationId: 0, location1: addedProduct.productName }
+
+
+              this.fightService.addLocation(location).subscribe(
+                location => { alert(`${location.location1} has been added to the database.`) },
+                () => { alert(`${location.location1} could not be added`)}
+              )
+            })
+          })
+        }
+      }
+    })
+
+  }
+
+  addWeather(): void {
+    let userString = sessionStorage.getItem('user');
+    if (userString === null) {
+      alert("You are not logged in.");
+      return
+    }
+    let currentUser = JSON.parse(userString);
+    if (currentUser.bucks < 2000) {
+      alert("You do not have enough bucks to make this purchase!");
+      return
+    }
+    //Prompt the user for a location
+    let newWeather: string | null = prompt("Type in a new weather for the database.");
+    //If the trait is invalid, you will be alerted that the trait is invalid, and you'll have to type it in again.
+    //For now, all the traits are valid. True will be replaced with a function to validate the traits
+    while (!true) {
+      newWeather = prompt(`Sorry, ${newWeather} is not a legal weather. Type in a new trait to add to the database.`);
+    }
+    //If the new trait is null, don't do anything.
+    if (newWeather === null || newWeather === "") return;
+    //Confirm that the user wants to add that trait
+    let choice: boolean = confirm(`Are you sure you want to add the new location "${newWeather}"? It will cost 2000 !Bucks.`);
+    if (!choice) return;
+    //get user's bucks, and reduce by 2000.
+    this.bucksService.adjustBucks(-2000).subscribe(canAfford => {
+      if (canAfford) {
+        //Add the trait to the database
+        if (newWeather !== null) {
+          
+          let product: Product = {
+            productId: 0,
+            seasonalId: null,
+            productName: newWeather,
+            productPrice: 2000, //need to change so that this number is dynamic to the cost presented
+            productDescription: 'Weather',
+            productDiscount: 0,
+            categoryId: 4,
+            category: "Weather"
+          }
+          this.shopService.AddProduct(product).subscribe(addedProduct => {
+            this.shopService.AddUserProduct(addedProduct)?.subscribe(addedUserProduct => {
+              let weather: Weather = { weatherId: 0, description: addedProduct.productName }
+
+
+              this.fightService.addWeather(weather).subscribe(
+                weather => { alert(`${weather.description} has been added to the database.`) },
+                () => { alert(`${weather.description} could not be added`)}
+              )
+            })
+          })
+        }
+      }
+    })
+
+  }
+
   addTrait(): void {
+    let userString = sessionStorage.getItem('user');
+    if (userString === null) {
+      alert("You are not logged in.");
+      return
+    }
+    let currentUser = JSON.parse(userString);
+    if (currentUser.bucks < 2000) {
+      alert("You do not have enough bucks to make this purchase!");
+      return
+    }
     //Prompt the user for a trait
     let newTrait: string | null = prompt("Type in a new trait for the database.");
     //If the trait is invalid, you will be alerted that the trait is invalid, and you'll have to type it in again.
@@ -77,10 +207,7 @@ export class StoreComponent implements OnInit {
                 .subscribe(
                   trait => { alert(`${trait.description} has been added to the database.`) },
                   () => { alert(`${trait.description} could not be added`)}
-
               );
-                   
-            
             })
           })
         }

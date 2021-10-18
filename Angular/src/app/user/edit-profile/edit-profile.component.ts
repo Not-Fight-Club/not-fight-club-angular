@@ -143,8 +143,8 @@ export class EditProfileComponent implements OnInit {
       console.log(id1)
       if (confirm("Are you sure you want to delete your profile?\nAll information associated to this user profile will be permanently deleted.")) {
         //
-        let DBUserId: Guid = Guid.parse("53266E78-7DEE-42C9-B9B8-E40422C959BF");
-        this.userService.deleteUser(DBUserId).subscribe(
+        // let DBUserId: Guid = Guid.parse("53266E78-7DEE-42C9-B9B8-E40422C959BF");
+        this.userService.deleteUser(id1).subscribe(
           id => {
             this.router.navigate(['**']); //send them back to the home page after deleting their account
           });

@@ -68,9 +68,17 @@ export class FightService {
     const url = `${this.fightApiUrl}/Location/All`;
     return this.http.get<Location[]>(url);
   }
+  addLocation(location: Location): Observable<Location> {
+    return this.http.post<Location>(`${this.fightApiUrl}/location`, location, this.httpOptions);
+  }
+
   getWeather(): Observable<Weather[]> {
     const url = `${this.fightApiUrl}/Weather/All`;
     return this.http.get<Weather[]>(url);
+  }
+
+  addWeather(weather: Weather): Observable<Weather> {
+    return this.http.post<Weather>(`${this.fightApiUrl}/weather`, weather, this.httpOptions);
   }
   //get fights by userID
   /*
