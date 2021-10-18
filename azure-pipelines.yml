@@ -38,12 +38,11 @@ stages:
         inputs:
           versionSpec: '14.x'
           checkLatest: true
-      - script: |
-          npm install -g @angular/cli
-          npm install
-          ng build --prod
-        displayName: 'npm install and build'
+      - script: npm install
+        displayName: 'npm install'
         workingDirectory: Angular
+      - script: npx ng build --prod
+        displayName: 'ng build'
       - script: |
           cd Angular
           apt-get update && apt-get install -y \
@@ -82,7 +81,7 @@ stages:
           npm install puppeteer --save-dev
           npm install karma-junit-reporter --save-dev
           npm ci
-          npm run test
+          npx ng test --watch=false --karma-config karma.conf.ci.js
         displayName: Install test dependencies and run tests
       - task: PublishTestResults@2
         displayName: Publish Test Results
