@@ -29,6 +29,7 @@ import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component'
 import { VoteComponent } from './vote/vote.component';
 import { PrivPubFightComponent } from './priv-pub-fight/priv-pub-fight.component';
 import { NewFightComponent } from './new-fight/new-fight.component';
+import { WeatherPickerComponent } from './weather-picker/weather-picker.component';
 
 
 
@@ -59,7 +60,8 @@ import { NewFightComponent } from './new-fight/new-fight.component';
     OngoingfightsComponent,
     PrivPubFightComponent,
     NewFightComponent,
-    CharacterPickerComponent
+    CharacterPickerComponent,
+    WeatherPickerComponent
 
   ],
   imports: [
