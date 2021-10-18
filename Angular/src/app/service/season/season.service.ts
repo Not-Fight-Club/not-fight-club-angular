@@ -12,7 +12,7 @@ export class SeasonService {
 
   constructor(private http: HttpClient) { }
 
-  private seasonApiUrl = environment.productsApiUrl;
+  private seasonApiUrl = environment.shopApiUrl;
   private url = `${this.seasonApiUrl}/api/Season`;
 
   getCurrentSeason(): Observable<Season> {
