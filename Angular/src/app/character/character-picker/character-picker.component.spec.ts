@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CharacterPickerComponent } from './character-picker.component';
@@ -8,6 +9,7 @@ describe('CharacterPickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [ CharacterPickerComponent ]
     })
     .compileComponents();

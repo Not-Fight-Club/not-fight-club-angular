@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrivPubFightComponent } from './priv-pub-fight.component';
@@ -8,6 +9,7 @@ describe('PrivPubFightComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [ PrivPubFightComponent ]
     })
     .compileComponents();

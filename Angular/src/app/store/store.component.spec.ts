@@ -1,5 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Guid } from 'guid-typescript';
 import { Observable, of } from 'rxjs';
+import { AppRoutingModule } from '../app-routing.module';
 import { User } from '../interfaces/user';
 import { BucksService } from '../service/bucks/bucks.service';
 import { StoreComponent } from './store.component';
@@ -10,9 +13,12 @@ describe('StoreComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StoreComponent]
-    })
-      .compileComponents();
+      imports: [
+        AppRoutingModule,
+        HttpClientModule
+      ],
+      declarations: [StoreComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -33,13 +39,18 @@ describe('Purchase item', () => {
   class bucksServiceStub {
     adjustBucks(changeBucks: number): Observable<boolean> {
       let user: User = {
-        userId: 1,
+        userId: Guid.create(),
         userName: 'testUser',
         pword: '',
         email: '',
         dob: new Date(),
-        bucks: 2020
-      }
+        bucks: 2020,
+        active: true,
+        lastLogin: new Date(),
+        loginStreak: 3,
+        profilePic: '',
+        rewardCollected: true,
+      };
 
       user.bucks += changeBucks;
 
@@ -52,10 +63,17 @@ describe('Purchase item', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [StoreComponent,
+      imports: [
+        AppRoutingModule,
+        HttpClientModule
+      ],
+      providers: [
+        StoreComponent,
         {
-          provide: BucksService, useClass: bucksServiceStub
-        }],
+          provide: BucksService,
+          useClass: bucksServiceStub,
+        },
+      ],
     }).compileComponents();
   });
 
@@ -63,9 +81,9 @@ describe('Purchase item', () => {
     fixture = TestBed.createComponent(StoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  })
+  });
 
-  it("user should have some money", () => {
+  it('user should have some money', () => {
     component.getRich();
     expect(component.user?.bucks).toBe(4020);
   });
