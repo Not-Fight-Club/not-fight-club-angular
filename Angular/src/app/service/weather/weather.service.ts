@@ -19,7 +19,7 @@ export class WeatherService {
   //get weathers 
 
   getWeathers():Observable<Weather[]> {
-    return this.http.get<Weather[]>(`${this.url}/api/weather`);
+    return this.http.get<Weather[]>(`${this.url}/weather/all`);
   }
 
 }
