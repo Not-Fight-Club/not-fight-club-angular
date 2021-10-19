@@ -1,4 +1,4 @@
-<div class="timer">
+<div class="timer" *ngIf="!fightOver else winner">
   <ul id="times">
     <li>
       <span class="day-count">{{days}}</span>
@@ -18,3 +18,9 @@
     </li>
   </ul>
 </div>
+
+<ng-template #winner>
+  <div>
+    <p>{{result}}</p>
+  </div>
+</ng-template>
