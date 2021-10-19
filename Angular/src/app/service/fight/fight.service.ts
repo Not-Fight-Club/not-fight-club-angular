@@ -68,6 +68,10 @@ export class FightService {
     const url = `${this.fightApiUrl}/Location/All`;
     return this.http.get<Location[]>(url);
   }
+  getLocation(location: string | null): Observable<Location> | null {
+    const url = `${this.fightApiUrl}/Location/${location}`
+    return this.http.get<Location>(url);
+  }
   addLocation(location: Location): Observable<Location> {
     return this.http.post<Location>(`${this.fightApiUrl}/location`, location, this.httpOptions);
   }
@@ -76,7 +80,10 @@ export class FightService {
     const url = `${this.fightApiUrl}/Weather/All`;
     return this.http.get<Weather[]>(url);
   }
-
+  getSingleWeather(weather: string | null): Observable<Weather> | null {
+    const url = `${this.fightApiUrl}/Weather/${weather}`
+    return this.http.get<Weather>(url);
+  }
   addWeather(weather: Weather): Observable<Weather> {
     return this.http.post<Weather>(`${this.fightApiUrl}/weather`, weather, this.httpOptions);
   }
