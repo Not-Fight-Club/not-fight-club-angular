@@ -14,7 +14,14 @@ import { FightService } from '../service/fight/fight.service';
 })
 export class ArchiveComponent implements OnInit {
 
+  //toggle fight archive on 
+  fightsActive: Boolean = true;
+
+  //toggle character archive on
+  charactersActive: Boolean = false;
+
   fightList: Fight[] = [];
+
 
   userFightList: any[] =[];
   //get character and fighters match their id and stuff to return the fightwithcharacters list
@@ -68,6 +75,7 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserId();
     this.getFights();
+    
 
     
   }
@@ -153,6 +161,22 @@ export class ArchiveComponent implements OnInit {
     this.displayUserFight=!this.displayUserFight;
   }
 
+  toggleArchiveView(elem: HTMLAnchorElement): void {
+    if (elem.id == "fights") {
+      //if the link pressed is the purchases link then turn off the data showing for the about link and turn on the data for the purchases
+      //turn of the active class for the about link and turn on active for purchases
+      document.getElementById("characters")?.classList.remove("active");
+      elem.classList.add("active");
+      this.charactersActive = false;
+      this.fightsActive = true;
+    }
+    else if (elem.id == "characters") {
+      document.getElementById("fights")?.classList.remove("active");
+      elem.classList.add("active");
+      this.fightsActive = false;
+      this.charactersActive= true;
+    }
+  }
 
 
 

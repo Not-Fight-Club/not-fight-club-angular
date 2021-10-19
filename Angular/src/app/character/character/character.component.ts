@@ -101,7 +101,7 @@ export class CharacterComponent implements OnInit {
     //get a weapon from the 3rd party api
     let OWeapon = await this.weaponService.RandomWeapon();
     OWeapon.subscribe(item => {
-      let weapon: Weapon = { weaponId: 0, description: item as string }
+      let weapon: Weapon = { weaponId: 0, description: item[0] }
       sessionStorage.setItem('weapon', JSON.stringify(weapon))
     })
     //save the weapon to our db

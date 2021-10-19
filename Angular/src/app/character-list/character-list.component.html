@@ -1,0 +1,32 @@
+<div>
+
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">BaseForm</th>
+          <th scope="col">Trait</th>
+          <th scope="col">Weapon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let character of userCharacters | paginate: {id: paginationName, itemsPerPage: 5, currentPage: page, totalItems: totalRecords}">
+          <td>{{character.name}}</td>
+          <td>{{character.baseform}}</td>
+          <td>{{character.traitId}}</td>
+          <td>{{character.weaponId}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="{{paginationName}}-controls">
+      <pagination-controls id="{{paginationName}}" directionlinks="true" (pageChange)="page =$event">
+      </pagination-controls>
+      <div>
+      </div>
+    </div>
+  </div>
+
+</div>
