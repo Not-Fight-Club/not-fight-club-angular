@@ -26,8 +26,6 @@ export class FightService {
     })
   };
 
-  //private urlB = 'https://localhost:5003'
-
   private fightApiUrl = environment.fightsApiUrl;
   private url = `${this.fightApiUrl}/fight`;
   getCurrentFight(): Observable<Fight> {
