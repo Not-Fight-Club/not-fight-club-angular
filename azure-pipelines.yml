@@ -62,7 +62,7 @@ stages:
         condition: succeededOrFailed()
         inputs:
           codeCoverageTool: 'Cobertura'
-          summaryFileLocation: '$(Build.SourcesDirectory)/coverage/Angular/cobertura-coverage.xml'
+          summaryFileLocation: 'Angular/coverage/Angular/cobertura-coverage.xml'
 
 - stage: Build
   displayName: Build stage
