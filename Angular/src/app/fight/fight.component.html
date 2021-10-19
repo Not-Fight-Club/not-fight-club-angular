@@ -6,7 +6,7 @@
     {{weapons[1].description}}</span>
 </div>
 
-<app-timer [endTime]="endTime"></app-timer>
+<app-timer *ngIf="fight != null" [endTime]="endTime" [tallyVotesFunction]="tallyVotes.bind(this)" [result]="result"></app-timer>
 
 <app-chat></app-chat>
 

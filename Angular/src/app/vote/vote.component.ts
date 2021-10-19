@@ -75,9 +75,9 @@ export class VoteComponent implements OnInit {
     })
   }
 
-  tallyVotes(fightId: number, fighterId: number) {
-    this.fightService.tallyVotes(fightId, fighterId).subscribe((tally) => {
-    console.log(`Votes for fighter ${fighterId}: ${tally}`)
-    });
-  }
+  //tallyVotes(fightId: number, fighterId: number) {
+  //  this.fightService.tallyVotes(fightId, fighterId).subscribe((tally) => {
+  //  console.log(`Votes for fighter ${fighterId}: ${tally}`)
+  //  });
+  //}
 }
