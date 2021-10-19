@@ -10,9 +10,11 @@ import { Wager } from '../interfaces/wager';
 })
 export class BetsComponent implements OnInit {
 
+
   // These are two fighter in a fight
   @Input() fighter1!: Fighter;
   @Input() fighter2!: Fighter;
+
 
   // Wager to be sent
   wager?: Wager;
