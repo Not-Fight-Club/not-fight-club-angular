@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BetsService } from '../service/bets/bets.service';
 import { Fighter } from '../interfaces/fighter';
 import { Wager } from '../interfaces/wager';
@@ -10,31 +10,22 @@ import { Wager } from '../interfaces/wager';
 })
 export class BetsComponent implements OnInit {
 
-  // These are example fighters to test
-  fighter1: Fighter = {
-    fighterId: 1,
-    fightId: 1,
-    characterId: 10,
-    votes: 100,
-    isWinner: false
-  }
+  // These are two fighter in a fight
+  @Input() fighter1!: Fighter;
+  @Input() fighter2!: Fighter;
 
-  fighter2: Fighter = {
-    fighterId: 2,
-    fightId: 1,
-    characterId: 9,
-    votes: 109,
-    isWinner: false
-  }
-
-  // Wager to be send
+  // Wager to be sent
   wager?: Wager;
 
   // this will be the fighter selected to bet on
   fighter?: Fighter;
+  // this is to reset fighter to bet to empty fighter for the next bet
   fighterReset?: Fighter;
+  // input from the user
   input?: number;
 
+  selected1: boolean = false;
+  selected2: boolean = false;
 
   // inject the services in the constructor
   constructor(private betsService: BetsService) { }
@@ -59,36 +50,37 @@ export class BetsComponent implements OnInit {
       if (parseInt(v)) {
         this.input = parseInt(v);
         console.log(`input is ${this.input} and fighter is ${JSON.stringify(this.fighter)}`);
-        // this.resetFighter();
-        // console.log(`fighter after betting is reset to: ${this.fighterRest}`);
         break;
       }
-      // else {
-      //   alert("You did not enter a number, please enter a number");
-      // }
     }
     // this is the wager object to be send to post
     if (this.fighter && this.input) {
       this.wager = {
-        userId: '93ec235b-53bb-444c-8244-e3a8f8056882',
+        userId: JSON.parse(sessionStorage.getItem('user')!).userId,
         fightId: this.fighter.fightId,
         amount: this.input,
         fighterId: this.fighter.fighterId,
       };
-      console.log(`we are sending this wager: ${this.fighter}`);
+      console.log(`This wager is being sent: ${this.fighter}`);
       // call betsService addWager method
       this.betsService.addWager(this.wager).subscribe();
       this.resetFighter();
     }
+    this.selected1 = false;
+    this.selected2 = false;
   }// end of activateBet() function
 
   doFirst() {
     this.fighter = this.fighter1;
+    this.selected2 = false;
+    this.selected1 = !this.selected1;
     console.log(`fighter to be send: ${JSON.stringify(this.fighter1)}`);
   }
 
   doSecond() {
     this.fighter = this.fighter2;
+    this.selected1 = false;
+    this.selected2 = !this.selected2;
     console.log(`fighter to be send: ${JSON.stringify(this.fighter2)}`);
   }
 

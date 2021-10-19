@@ -1,17 +1,20 @@
 <div class="container">
-  <div class="row text-center">
-    <div class="col-md-2 fighter" (click)="doFirst()">
+  <h3>Place your bet</h3>
+  <div class="row text-center" *ngIf="fighter">
+    <h4>You are placing a bet on {{fighter.fightId}}</h4>
+  </div>
+  <div class="row text-center disp">
+    <div class="col-md-2 fighter py-3" [class.selected]="selected1" (click)="doFirst()">
       {{fighter1.fighterId}}
     </div>
     <div class="col-md-1">
       VS
     </div>
-    <div class="col-md-2 fighter" (click)="doSecond()">
+    <div class="col-md-2 fighter" [class.selected]="selected2" (click)="doSecond()">
       {{fighter2.fighterId}}
     </div>
-
-    <div class="col-md-6">
-      <button class="btn-bet px-3 py-1 " (click)="activateBet()"> Bet on fight </button>
+    <div class="col-md-6" *ngIf="fighter">
+      <button class="btn-bet px-3 py-1" (click)="activateBet()"> Bet on fight </button>
     </div>
   </div>
 </div>
