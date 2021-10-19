@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class ProductService {
 
   constructor(private http: HttpClient) { }
-  private url = environment.productsApiUrl;
+  private url = environment.shopApiUrl;
 
   productList(): Observable<Product[]>{
     return this.http.get<Product[]>(`${this.url}/api/product`)

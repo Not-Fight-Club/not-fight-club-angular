@@ -20,3 +20,8 @@
   background-color: rgb(77, 77, 180);
   color: white;
 }
+
+.selected {
+  background-color: rgb(219, 158, 43);
+  color: white
+}

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Wager } from '../../interfaces/wager';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class BetsService {
   constructor(private http: HttpClient) { }
 
   // this is the url for Bets Microservice
-  url: string = 'https://localhost:44327/api/Wagers/postbet';
+  url: string = environment.betsApiUrl+'/api/Wagers/postbet';
 
   httpOptions = {
     headers: new HttpHeaders({

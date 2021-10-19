@@ -11,7 +11,6 @@ import { environment } from '../../../environments/environment';
 export class CharacterService {
 
   constructor(private http: HttpClient) { }
-  //private url = 'http://localhost:5000';
   private url = environment.charactersApiUrl;
 
   CreateCharacter(character: Character) {

@@ -13,7 +13,6 @@ export class WeaponService {
   constructor(private http: HttpClient) { }
 
   private thirdPartyurl = 'https://random-word-form.herokuapp.com/random/noun';
-  //private url = 'http://localhost:5000';
   private url = environment.charactersApiUrl;
 
 
