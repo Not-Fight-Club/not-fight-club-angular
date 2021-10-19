@@ -1,6 +1,14 @@
-<span >
-  <button (click)="submitVote(fighter1)">Vote for {{fighterName1}}</button>
-</span>
-<span >
-  <button (click)="submitVote(fighter2)">Vote for {{fighterName2}}</button>
-</span>
+<div *ngIf="notVoted else feedback">
+  <span>
+    <button (click)="submitVote(fighter1)">Vote for {{fighterName1}}</button>
+  </span>
+  <span>
+    <button (click)="submitVote(fighter2)">Vote for {{fighterName2}}</button>
+  </span>
+</div>
+
+<ng-template #feedback>
+  <div>
+    <p>Your vote has been recorded.  Thank you for participating!</p>
+  </div>
+</ng-template>
