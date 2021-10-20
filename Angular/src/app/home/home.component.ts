@@ -38,11 +38,22 @@ export class HomeComponent implements OnInit {
     } else {
       let currentUser = JSON.parse(userFromSession);
       this.bucksService.GetReward(currentUser)
-        .subscribe(reward => { this.reward = reward; window.alert(`You have collected ${this.reward} !Bucks!!!!!!!!`) })
+        .subscribe(reward => {
+
+          this.reward = reward;
+          console.log(`${this.reward}`)
+          if (reward != -1) {
+            window.alert(`You have collected ${this.reward} !Bucks!!!!!!!!`)
+          }
+          else
+            window.alert('You have already collected a reward!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (smiley face)')
           currentUser.bucks = currentUser.bucks + this.reward;
           console.log(currentUser.bucks);
           this.userService.editProfile(currentUser.userId, currentUser).subscribe(obj => {
-          sessionStorage.setItem('user', JSON.stringify(obj));
+            sessionStorage.setItem('user', JSON.stringify(obj));
+          })
+
+
         });
     }
 
