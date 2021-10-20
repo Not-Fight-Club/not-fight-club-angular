@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
         .subscribe(reward => {
 
           this.reward = reward;
+          console.log(`${this.reward}`)
           if (reward != -1) {
             window.alert(`You have collected ${this.reward} !Bucks!!!!!!!!`)
           }
@@ -48,11 +49,12 @@ export class HomeComponent implements OnInit {
             window.alert('You have already collected a reward!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (smiley face)')
           currentUser.bucks = currentUser.bucks + this.reward;
           console.log(currentUser.bucks);
-        })
+          this.userService.editProfile(currentUser.userId, currentUser).subscribe(obj => {
+            sessionStorage.setItem('user', JSON.stringify(obj));
+          })
 
-      this.userService.editProfile(currentUser.userId, currentUser).subscribe(obj => {
-        sessionStorage.setItem('user', JSON.stringify(obj));
-      });
+
+        });
     }
 
   }
