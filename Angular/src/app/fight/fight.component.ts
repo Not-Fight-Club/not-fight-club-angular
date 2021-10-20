@@ -127,7 +127,7 @@ export class FightComponent implements OnInit {
     return this.characterService.GetCharacter(charId).subscribe(character => {
       if (fighter == 0 && character != null) {
         console.log(character);
-        this.characters.push(character);
+        this.characters.unshift(character);
         this.getTrait(character.traitId, 0);
         this.getWeapon(character.weaponId, 0);
       }
@@ -144,7 +144,7 @@ export class FightComponent implements OnInit {
     return this.traitService.getTraitById(traitId).subscribe(trait => {
       if (fighter == 0) {
         console.log(trait);
-        this.traits.push(trait);
+        this.traits.unshift(trait);
       }
       else if (fighter == 1) {
         console.log(trait);
@@ -158,7 +158,7 @@ export class FightComponent implements OnInit {
     return this.weaponService.getWeaponById(weaponId).subscribe(weapon => {
       if (fighter == 0) {
         console.log(weapon);
-        this.weapons.push(weapon);
+        this.weapons.unshift(weapon);
       }
       else if (fighter == 1) {
         console.log(weapon);
