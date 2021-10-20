@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { relativeTimeThreshold } from 'moment';
 import { Character } from '../interfaces/character';
+import { CharacterWithTraitandWeapon } from '../interfaces/characterWithTraitandWeapon';
 import { Fight } from '../interfaces/fight';
 import { Fighter } from '../interfaces/fighter';
+import { User } from '../interfaces/user';
 import { ArchiveService } from '../service/archive/archive.service';
 import { CharacterService } from '../service/character/character.service';
 import { FightService } from '../service/fight/fight.service';
@@ -14,7 +16,16 @@ import { FightService } from '../service/fight/fight.service';
 })
 export class ArchiveComponent implements OnInit {
 
+  //toggle fight archive on 
+  fightsActive: Boolean = true;
+
+  //toggle character archive on
+  charactersActive: Boolean = false;
+  allCharacters: CharacterWithTraitandWeapon[] = [];
+  usersCharacters: CharacterWithTraitandWeapon[] =[]
+
   fightList: Fight[] = [];
+
 
   userFightList: any[] =[];
   //get character and fighters match their id and stuff to return the fightwithcharacters list
@@ -24,7 +35,8 @@ export class ArchiveComponent implements OnInit {
   characterIdList:number[]=[];
   //store all fithers for all the past fight
   allFighters:any[] =[];
-  displayUserFight:boolean = false;
+  displayUserFight: boolean = false;
+  displayUserCharacters: boolean = false;
   //combined list for fight with characters
   //I use an array of obj
   fightWithCharacters:any[] =[];
@@ -68,6 +80,9 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserId();
     this.getFights();
+    this.getCharacters();
+    this.getUsersCharacters();
+    
 
     
   }
@@ -153,7 +168,53 @@ export class ArchiveComponent implements OnInit {
     this.displayUserFight=!this.displayUserFight;
   }
 
+  toggleArchiveView(elem: HTMLAnchorElement): void {
+    if (elem.id == "fights") {
+      //if the link pressed is the purchases link then turn off the data showing for the about link and turn on the data for the purchases
+      //turn of the active class for the about link and turn on active for purchases
+      document.getElementById("characters")?.classList.remove("active");
+      elem.classList.add("active");
+      this.charactersActive = false;
+      this.fightsActive = true;
+    }
+    else if (elem.id == "characters") {
+      document.getElementById("fights")?.classList.remove("active");
+      elem.classList.add("active");
+      this.fightsActive = false;
+      this.charactersActive= true;
+    }
+  }
 
+  showMyCharacters(): void {
+    //if(this.userId)
+    //  this.getFightsByUserId(this.userId);
+    this.displayUserCharacters = !this.displayUserCharacters;
+  }
+
+  
+  getCharacters():void {
+    //get all the characters in the db
+    this.characterService.GetCharacters().subscribe(characters => {
+      this.allCharacters = characters;
+      console.log(this.allCharacters)
+    })
+  }
+
+  getUsersCharacters(): void {
+
+    let userstring = sessionStorage.getItem('user');
+    if (userstring != null) {
+      let user:User = JSON.parse(userstring);
+
+      //get all the characters in the db for a specific user
+      this.characterService.UserCharacterList(user.userId).subscribe(characters => {
+        this.usersCharacters = characters;
+        console.log(this.usersCharacters)
+      })
+    }
+   
+    
+  }
 
 
 }

@@ -13,7 +13,7 @@
         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
           <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">   {{product.productName}} </h2>
           <h4 class="align-items-center pt-5 mb-4 lh-1">{{product.productDescription}}</h4>
-          <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
+          <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)" disabled>Coming Soon</button>
           <ul class="d-flex list-unstyled mt-auto">
             <li class="me-auto">
               <img src="https://images.unsplash.com/photo-1604172459579-bdf5acfddca7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
@@ -36,7 +36,7 @@
       <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> {{product.productName}}</h2>
         <h4 class="align-items-center pt-5 mb-4 lh-1">{{product.productDescription}}</h4>
-        <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
+        <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)" disabled>Coming Soon</button>
         <ul class="d-flex list-unstyled mt-auto">
           <li class="me-auto">
             <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
@@ -58,7 +58,12 @@
       <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{product.productName}}</h2>
         <h4 class="align-items-center pt-5 mb-4 lh-1">{{product.productDescription}}</h4>
-        <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="buyProductButton(product.productId)">Buy</button>
+        <button class="btn btn-outline-info btn-sm px-4 me-sm-3 fw-bold" type="button" (click)="editCharacterWeapon()">Buy</button>
+        <!--buyProductButton(product.productId)-->
+        <div *ngIf="characterpickerViewable">
+          <app-character-picker [characters]="userCharacters" label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)"></app-character-picker>
+          <button type="button" (click)="changeCharacterWeapon(product)">Confirm Purchase</button>
+        </div>
 
         <ul class="d-flex list-unstyled mt-auto">
           <li class="me-auto">

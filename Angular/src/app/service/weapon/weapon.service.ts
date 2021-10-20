@@ -16,8 +16,8 @@ export class WeaponService {
   private url = environment.charactersApiUrl;
 
 
-  RandomWeapon() {
-    return this.http.get(this.thirdPartyurl);
+  RandomWeapon(): Observable<string []> {
+    return this.http.get<string []>(this.thirdPartyurl);
   }
 
   PostWeapon(weapon: Weapon) {

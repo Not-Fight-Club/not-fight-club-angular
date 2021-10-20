@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Product } from '../../interfaces/product';
 import { User } from '../../interfaces/user';
-import { UserR } from '../../interfaces/userR';
+
 
 @Injectable({
   providedIn: 'root'

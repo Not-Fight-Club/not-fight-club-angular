@@ -50,6 +50,10 @@ export class FightService {
     return this.http.post<Vote>(`${this.fightApiUrl}/vote`, vote);
   }
 
+  checkUserVote(fightId: number, userId: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.fightApiUrl}/uservote/${fightId}/${userId}`);
+  }
+
   tallyVotes(fightId: number, fighterId: number): Observable<number> {
     return this.http.get<number>(`${this.fightApiUrl}/votes/${fightId}/${fighterId}`);
   }

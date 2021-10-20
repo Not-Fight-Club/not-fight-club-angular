@@ -7,6 +7,10 @@ import { TraitService } from '../service/trait/trait.service';
 import { User } from 'src/app/interfaces/user';
 import { Product } from '../interfaces/product';
 import { ShopService } from '../service/shop/shop.service';
+import { Character } from '../interfaces/character';
+import { CharacterService } from '../service/character/character.service';
+import { WeaponService } from '../service/weapon/weapon.service';
+import { Weapon } from '../interfaces/weapon';
 import { Location } from '../interfaces/location';
 import { FightService } from '../service/fight/fight.service';
 import { Weather } from '../interfaces/weather';
@@ -19,15 +23,28 @@ import { Weather } from '../interfaces/weather';
 export class StoreComponent implements OnInit {
 
   user: User | null = null;
+  userCharacters: Character[] = [];
 
-  constructor(private bucksService: BucksService, private traitService: TraitService, private router: Router, private shopService: ShopService, private fightService: FightService) { }
+  constructor(private bucksService: BucksService, private traitService: TraitService,
+    private router: Router, private shopService: ShopService, private characterService: CharacterService,
+    private weaponService: WeaponService, private fightService: FightService) { }
 
   ngOnInit(): void {
     let userString: string | null = sessionStorage.getItem('user');
     if (userString !== null) {
       let userJSON = JSON.parse(userString);
       this.user = userJSON;
+
+      //populate the characters for a specific user
+      this.characterService.UserCharacterList(this.user?.userId).subscribe(
+        (characters: Character[]) => {
+          this.userCharacters = characters;
+          console.log(this.userCharacters)
+        })
+     
     }
+   
+   
   }
 
   getRich(): void {
@@ -254,13 +271,103 @@ export class StoreComponent implements OnInit {
     }
   }
 
-  editCharacterWeapon() {
-    //Confirm that the user wants the entity.
-    let choice: boolean = confirm(`Are you sure you want your character's weapon to change? It will cost 100 not bucks.`);
-    if (!choice) return;
-    //get user's bucks, and reduce by 100.
-    if (this.bucksService.adjustBucks(-100)) {
-      //A new weapon is randomly generated for the character.
+  character1: Character | undefined;
+  setChar1(c: Character | undefined) {
+    if (c == undefined) {
+      //always take the first character
+      this.character1 = this.userCharacters[0];
+      console.log("setchar1: ", this.character1)
+    } else {
+      console.log("setchar1: ", c);
+      this.character1 = c;
     }
+    
+  }
+  
+  characterpickerViewable: boolean = false;
+  editCharacterWeapon() {
+    if (this.userCharacters.length == 0) {
+      alert("You must create a character first!")
+    }
+    this.characterpickerViewable = true;
+    //on button press toggle the component into view
+  }
+
+    //Confirm that the user wants the entity.
+    //let choice: boolean = confirm(`Are you sure you want your character's weapon to change? It will cost 100 not bucks.`);
+    //if (!choice) return;
+    ////get user's bucks, and reduce by 100.
+    //if (this.bucksService.adjustBucks(-100)) { //what does this need to be changed to Ask Simran
+
+    //  //Allow them to select one of their characters
+    //  this.characterService.get(this.user?.userId).subscribe(
+    //    (characters: Character[]) => {
+    //      this.userCharacters = characters;
+    //    }
+    //  )
+
+      //A new weapon is randomly generated for the character.
+      //pull code from character component
+
+      //make a call to the character service to update the character
+      //new code that character team should have developed
+
+
+   // }
+  
+
+  changeCharacterWeapon() {
+    
+    //check if a character was selected
+    if (this.character1 == undefined) {
+      //always take the first character
+      alert("You must pick a character first");
+    }
+     //generate a new weapon and send to the character db
+    this.SubmitWeapon();
+
+   
+  }
+
+  async SubmitWeapon() {
+     //Confirm that the user wants the entity.
+    let choice: boolean = confirm(`Are you sure you want your character's weapon to change? It will cost 500 not bucks.`);
+    if (!choice) return;
+
+    //collect payment
+    this.bucksService.adjustBucks(-500).subscribe( async canAfford => {
+      if (canAfford) {
+        //get a weapon from the 3rd party api
+        let OWeapon = await this.weaponService.RandomWeapon();
+        OWeapon.subscribe(async item => {
+
+          let weapon: Weapon = { weaponId: 0, description: item[0] }
+          //send to the character db
+          await this.weaponService.PostWeapon(weapon).subscribe(weapon => {
+            //update the character with the new weapon
+            if (this.character1 != undefined) {
+              this.character1.weaponId = weapon.weaponId;
+
+              this.characterService.UpdateCharacter(this.character1).subscribe(character => {
+                alert(`You've updated ${character.name} to use a ${weapon.description}`)
+                this.router.navigateByUrl('store') 
+              })
+            }
+
+
+
+          });
+        })
+      }
+    })
+
   }
 }
+
+//what to do next for editing a character's weapon
+//add a button to confirm the purchase
+//on confirmation run the code for
+  //generating a weapon and sending the weapon to the db
+//update the character with the new weapon
+//display that update to the user
+
