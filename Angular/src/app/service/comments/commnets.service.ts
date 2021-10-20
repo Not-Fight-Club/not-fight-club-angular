@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Comment } from '../../interfaces/comment';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CommnetsService {
 
   constructor(private http: HttpClient) { }
 
-  url: string = 'https://localhost:44327/api/Wagers/postbet';
+  url: string = environment.betsApiUrl+'/api/Wagers/postbet';
 
 
   httpOptions = {
