@@ -19,6 +19,7 @@ export class PrivPubFightComponent implements OnInit {
   locations: Location[] = [];
   weathers: Weather[] = [];
 
+  weather:Weather | undefined;
   character1: Character | undefined;
   character2: Character | undefined;
 
@@ -61,7 +62,9 @@ export class PrivPubFightComponent implements OnInit {
     console.log("setchar2: ", c);
     this.character2 = c;
   }
-
+  setWeather(w:Weather | undefined){
+    this.weather = w;
+  }
   savePrivate(fight: any): void {
     this.fightService.newPrivateFight(fight).subscribe(fights => { });
 
@@ -73,13 +76,17 @@ export class PrivPubFightComponent implements OnInit {
   onSubmit(fightForm: NgForm) {
 
     console.log(fightForm);
+    let weatherId = 0;
+    if(this.weather){
+      weatherId =this.weather.weatherId;
+    }
     let fight: any = {
       fightId: 0,
       CreatorId: fightForm.value.creator,
       StartDate:fightForm.value.startdate,
       EndDate: fightForm.value.enddate,
       Location: fightForm.value.location,
-      Weather: fightForm.value.weather,
+      Weather: weatherId,
       Characters: [
         this.character1,
         this.character2
