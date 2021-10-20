@@ -88,18 +88,6 @@ export class ProductComponent implements OnInit {
       return
     }
     let user = JSON.parse(userString);
-
-    // let userString: string | null = localStorage.getItem('user');
-    // if (userString === null) {
-    //   alert("You are not logged in.");
-    //   return
-    // }
-    // let user: User = JSON.parse(userString);
-    // let user= {UserId: Guid.create(), UserName: "username", Email: "email", Dob: Date.now(), Bucks: 50, Pword: "password", Active: true, LastLogin: Date.now()}
-
-    //dummy userid that exists on db
-    //let id: Guid = Guid.parse("EA0EF870-5D07-42A7-B5E6-1F6BF8706415");
-
     this.productService.getProductById(productId).subscribe(data => {
       console.log(data);
 
@@ -117,12 +105,6 @@ export class ProductComponent implements OnInit {
         });
       });
     })
-
-
-    // let user= {userId: Guid.create(), userName: "username", email: "email", dob: "2000-01-01", bucks: 50, pword: "password" }
-
-    // this.productService.buyProduct(productId, user).subscribe();
-
   }
 
   character1: Character | undefined;

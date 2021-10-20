@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Guid } from 'guid-typescript';
 import { Observable, of } from 'rxjs';
 import { User } from '../interfaces/user';
 import { BucksService } from '../service/bucks/bucks.service';
@@ -33,12 +34,17 @@ describe('Purchase item', () => {
   class bucksServiceStub {
     adjustBucks(changeBucks: number): Observable<boolean> {
       let user: User = {
-        userId: 1,
+        userId: Guid.create(),
         userName: 'testUser',
         pword: '',
         email: '',
         dob: new Date(),
-        bucks: 2020
+        bucks: 2020,
+        active: true,
+        lastLogin: new Date(),
+        loginStreak: 3,
+        profilePic: '',
+        rewardCollected: true
       }
 
       user.bucks += changeBucks;
