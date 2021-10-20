@@ -13,8 +13,9 @@
       </div>
       -->
 
-      <input type="hidden" id="creatorId" name="creator" [value]="getUserId()" />
+      <input type="hidden" ngModel id="creatorId" name="creator" [value]="getUserId()" />
 
+        <!--
         <div *ngIf="creatorIdInput.invalid && (creatorIdInput.dirty || creatorIdInput.touched)"
           class="alert alert-danger">
 
@@ -33,6 +34,7 @@
 
 
         </div>
+        -->
 
 
         <!--<div class="form-floating">
