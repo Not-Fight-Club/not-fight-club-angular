@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Guid } from 'guid-typescript';
 import { Observable, of } from 'rxjs';
 import { User } from '../interfaces/user';
@@ -11,6 +13,7 @@ describe('StoreComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [StoreComponent]
     })
       .compileComponents();
@@ -58,6 +61,7 @@ describe('Purchase item', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [StoreComponent,
         {
           provide: BucksService, useClass: bucksServiceStub
