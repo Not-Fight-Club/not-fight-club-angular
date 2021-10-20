@@ -7,6 +7,7 @@ import { Location } from '../interfaces/location';
 import { Weather } from '../interfaces/weather';
 import { Character } from '../interfaces/character';
 import { Router } from '@angular/router';
+import { CharacterService } from '../service/character/character.service';
 
 @Component({
   selector: 'app-priv-pub-fight',
@@ -19,6 +20,7 @@ export class PrivPubFightComponent implements OnInit {
 
   locations: Location[] = [];
   weathers: Weather[] = [];
+  characters: Character[] = [];
 
   weather:Weather | undefined;
   character1: Character | undefined;
@@ -26,11 +28,15 @@ export class PrivPubFightComponent implements OnInit {
 
 
   
-  constructor(private fightService: FightService, private router: Router) { }
+  constructor(
+    private fightService: FightService,
+    private characterService: CharacterService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.fightService.getWeather().subscribe(w => this.weathers = w);
     this.fightService.getLocations().subscribe(l => this.locations = l);
+    this.characterService.GetCharacters().subscribe(cs => this.characters = cs);
   }
   showAddFight: boolean = false;
   ngOnChanges(): void {
