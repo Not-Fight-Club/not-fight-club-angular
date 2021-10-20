@@ -6,6 +6,7 @@ import { FightService } from '../service/fight/fight.service';
 import { Location } from '../interfaces/location';
 import { Weather } from '../interfaces/weather';
 import { Character } from '../interfaces/character';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-priv-pub-fight',
@@ -25,7 +26,7 @@ export class PrivPubFightComponent implements OnInit {
 
 
   
-  constructor(private fightService: FightService) { }
+  constructor(private fightService: FightService, private router: Router) { }
 
   ngOnInit(): void {
     this.fightService.getWeather().subscribe(w => this.weathers = w);
@@ -52,12 +53,23 @@ export class PrivPubFightComponent implements OnInit {
   setWeather(w:Weather | undefined){
     this.weather = w;
   }
+
+  redirectToFight(fight: Fight) {
+    this.router.navigate(["/fight", fight.fightId]);
+  }
+
   savePrivate(fight: any): void {
-    this.fightService.newPrivateFight(fight).subscribe(fights => { });
+    this.fightService.newPrivateFight(fight).subscribe(newFight => {
+      console.log(newFight);
+      this.redirectToFight(newFight);
+    });
 
   }
   savePublic(fight: any): void {
-    this.fightService.newPublicFight(fight).subscribe(fights => { });
+    this.fightService.newPublicFight(fight).subscribe(newFight => {
+      console.log(newFight);
+      this.redirectToFight(newFight);
+    });
 
   }
   onSubmit(fightForm: NgForm) {
