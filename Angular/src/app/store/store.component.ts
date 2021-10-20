@@ -135,7 +135,7 @@ export class StoreComponent implements OnInit {
         //If the weather condition is invalid, you will be alerted that the weather is invalid.
         alert(`Sorry, ${newWeather} already exists or is invalid.`)
       else {
-        this.addLocation(newWeather);
+        this.addWeather(newWeather);
       }
     });
   }
