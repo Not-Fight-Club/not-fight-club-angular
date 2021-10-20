@@ -6,6 +6,8 @@ import { FightService } from '../service/fight/fight.service';
 import { Location } from '../interfaces/location';
 import { Weather } from '../interfaces/weather';
 import { Character } from '../interfaces/character';
+import { Router } from '@angular/router';
+import { CharacterService } from '../service/character/character.service';
 
 @Component({
   selector: 'app-priv-pub-fight',
@@ -18,6 +20,7 @@ export class PrivPubFightComponent implements OnInit {
 
   locations: Location[] = [];
   weathers: Weather[] = [];
+  characters: Character[] = [];
 
   weather:Weather | undefined;
   character1: Character | undefined;
@@ -25,11 +28,15 @@ export class PrivPubFightComponent implements OnInit {
 
 
   
-  constructor(private fightService: FightService) { }
+  constructor(
+    private fightService: FightService,
+    private characterService: CharacterService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.fightService.getWeather().subscribe(w => this.weathers = w);
     this.fightService.getLocations().subscribe(l => this.locations = l);
+    this.characterService.GetCharacters().subscribe(cs => this.characters = cs);
   }
   showAddFight: boolean = false;
   ngOnChanges(): void {
@@ -38,6 +45,22 @@ export class PrivPubFightComponent implements OnInit {
     }
 
 
+  }
+
+  getUserId(): string {
+    let result: string = "";
+    let userStr = sessionStorage.getItem("user");
+    console.log(userStr);
+    if (userStr) {
+      let user = JSON.parse(userStr);
+      console.log(user);
+      let userId = user?.userId;
+      if (userId) {
+        result = userId;
+      }
+    }
+    console.log(result);
+    return result;
   }
 
   setChar1(c: Character | undefined) {
@@ -52,12 +75,23 @@ export class PrivPubFightComponent implements OnInit {
   setWeather(w:Weather | undefined){
     this.weather = w;
   }
+
+  redirectToFight(fight: Fight) {
+    this.router.navigate(["/fight", fight.fightId]);
+  }
+
   savePrivate(fight: any): void {
-    this.fightService.newPrivateFight(fight).subscribe(fights => { });
+    this.fightService.newPrivateFight(fight).subscribe(newFight => {
+      console.log(newFight);
+      this.redirectToFight(newFight);
+    });
 
   }
   savePublic(fight: any): void {
-    this.fightService.newPublicFight(fight).subscribe(fights => { });
+    this.fightService.newPublicFight(fight).subscribe(newFight => {
+      console.log(newFight);
+      this.redirectToFight(newFight);
+    });
 
   }
   onSubmit(fightForm: NgForm) {
@@ -69,7 +103,7 @@ export class PrivPubFightComponent implements OnInit {
     }
     let fight: any = {
       fightId: 0,
-      CreatorId: fightForm.value.creator,
+      CreatorId: this.getUserId(),
       StartDate:fightForm.value.startdate,
       EndDate: fightForm.value.enddate,
       Location: fightForm.value.location,
