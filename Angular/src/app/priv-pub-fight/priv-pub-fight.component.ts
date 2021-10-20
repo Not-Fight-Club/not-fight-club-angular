@@ -54,7 +54,7 @@ export class PrivPubFightComponent implements OnInit {
     if (userStr) {
       let user = JSON.parse(userStr);
       console.log(user);
-      let userId = user?.userId?.value;
+      let userId = user?.userId;
       if (userId) {
         result = userId;
       }
