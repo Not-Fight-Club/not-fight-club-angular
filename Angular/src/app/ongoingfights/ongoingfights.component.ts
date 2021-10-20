@@ -22,6 +22,9 @@ export class OngoingfightsComponent implements OnInit {
   ngOnInit(): void {
     this.getOngoingFights()
   }
+  createNewFight(): void {
+    window.location.href="fights/new";
+  }
 
   getOngoingFights() {
     return this.fightService.getAllOngoingFights().subscribe(fights => {
