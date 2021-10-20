@@ -1,16 +1,21 @@
-<div class="register-wrapper">
+<div class="create-fight-wrapper">
   <div class="card">
     <div class="card-body">
       <form class="form-register" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
         <!-- <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">  -->
         <h1 class="h3 mb-3 fw-normal">Please Create Your Fight</h1>
 
-        <div class="form-group form-floating">
-          <input type="text" class="form-control" id="creatorId" placeholder="creatorId" name="creator" minlength="3"
-            maxlength="50" required ngModel #creatorIdInput="ngModel" autofocus>
-          <label for="floatingInput">Creator</label>
-        </div>
+      <!-- Debug input for userId value
+      <div class="form-group form-floating">
+        <input type="text" class="form-control" id="creatorId" placeholder="creatorId" name="creator"
+               minlength="3" maxlength="50" required ngModel #creatorIdInput="ngModel" autofocus>
+        <label for="floatingInput">Creator</label>
+      </div>
+      -->
 
+      <input type="hidden" ngModel id="creatorId" name="creator" [value]="getUserId()" />
+
+        <!--
         <div *ngIf="creatorIdInput.invalid && (creatorIdInput.dirty || creatorIdInput.touched)"
           class="alert alert-danger">
 
@@ -29,6 +34,7 @@
 
 
         </div>
+        -->
 
 
         <!--<div class="form-floating">
@@ -112,9 +118,9 @@
     -->
         <app-weather-picker (selectedWeather)="setWeather($event)"></app-weather-picker>
 
-        <app-character-picker label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)">
+        <app-character-picker [characters]="characters" label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)">
         </app-character-picker>
-        <app-character-picker label="Character 2" id="characterselect2" (selectedChar)="setChar2($event)">
+        <app-character-picker [characters]="characters" label="Character 2" id="characterselect2" (selectedChar)="setChar2($event)">
         </app-character-picker>
         <!--
   <div class="form-group form-floating">

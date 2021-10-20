@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
     annotations:
-        service.beta.kubernetes.io/notfightclubangular-resource-group: p3_fight_club
+        service.beta.kubernetes.io/azure-load-balancer-resource-group: p3_fight_club
     name: notfightclubangular
 spec:
     loadBalancerIP: 20.102.0.170
