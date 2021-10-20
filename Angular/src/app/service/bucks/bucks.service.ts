@@ -5,6 +5,7 @@ import { User } from '../../interfaces/user';
 import { Observable, of } from 'rxjs';
 import { Guid } from 'guid-typescript';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class BucksService {
 
-  private url = 'https://localhost:5001'
+  private url = environment.usersApiUrl;
 
   constructor(private router: Router, private userService: UserService, private http: HttpClient) { }
 
@@ -30,7 +31,7 @@ export class BucksService {
     user.bucks += changeBucks;
 
     this.userService.editProfile(user.userId, user).subscribe(obj => {
-          sessionStorage.setItem('user', JSON.stringify(obj));
+      sessionStorage.setItem('user', JSON.stringify(obj));
     });
     return of(true);
   }
