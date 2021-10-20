@@ -63,15 +63,16 @@
     </div>
     <div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
       <div class="my-3 py-3">
-        <h2 class="display-5">Edit A Character''s Weapon</h2>
+        <h2 class="display-5">Edit A Character's Weapon</h2>
         <p class="lead">
-          Would you like to add a trait to the database? Now is your time to shine! For <span id="costAddTrait">2000</span>
-          !Bucks, you can add any new trait you want! Just make sure the trait isn't
-          gamebreaking or X-rated. We need to keep it PG-13.
+          Don't like your character's weapon? For <span id="costAddTrait">500</span>
+          !Bucks, you can re-roll your character's weapon!
           <button (click)="editCharacterWeapon()">Purchase</button>
         </p>
-        <div *ngIf="characterpickerViewable"> <app-character-picker [characters] ="userCharacters" label="Character 1" id="characterselect1" (selectedChar)="setChar1($event)"></app-character-picker>
-        <button type="button" (click)="changeCharacterWeapon()">Generate Weapon</button>
+        <div *ngIf="characterpickerViewable">
+          <app-character-picker [characters]="userCharacters" label="Character 1" id="characterselect1"
+            (selectedChar)="setChar1($event)"></app-character-picker>
+          <button type="button" (click)="changeCharacterWeapon()">Generate Weapon</button>
         </div>
       </div>
       <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
