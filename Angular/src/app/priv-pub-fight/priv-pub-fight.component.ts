@@ -41,6 +41,22 @@ export class PrivPubFightComponent implements OnInit {
 
   }
 
+  getUserId(): string {
+    let result: string = "";
+    let userStr = sessionStorage.getItem("user");
+    console.log(userStr);
+    if (userStr) {
+      let user = JSON.parse(userStr);
+      console.log(user);
+      let userId = user?.userId?.value;
+      if (userId) {
+        result = userId;
+      }
+    }
+    console.log(result);
+    return result;
+  }
+
   setChar1(c: Character | undefined) {
     console.log("setchar1: ", c);
     this.character1 = c;
@@ -81,7 +97,7 @@ export class PrivPubFightComponent implements OnInit {
     }
     let fight: any = {
       fightId: 0,
-      CreatorId: fightForm.value.creator,
+      CreatorId: this.getUserId(),
       StartDate:fightForm.value.startdate,
       EndDate: fightForm.value.enddate,
       Location: fightForm.value.location,
