@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { PrivPubFightComponent } from './priv-pub-fight.component';
@@ -10,8 +11,9 @@ describe('PrivPubFightComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule],
-      declarations: [ PrivPubFightComponent ]
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
+      declarations: [PrivPubFightComponent],
+      providers: [FormBuilder]
     })
     .compileComponents();
   });
