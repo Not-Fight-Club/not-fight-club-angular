@@ -15,12 +15,6 @@
               Characters
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              Users
-            </a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -44,16 +38,15 @@
       </div>
 
       <div *ngIf="charactersActive">
-        <!--<button *ngIf="!displayUserFight" (click)='showMyFights()'>My Characters</button>
-        <button *ngIf="displayUserFight" (click)='showMyFights()'>All Fights</button>-->
-        <app-character-list >
-        </app-character-list>
+        <button *ngIf="!displayUserCharacters" (click)='showMyCharacters()'>My Characters</button>
+        <button *ngIf="displayUserCharacters" (click)='showMyCharacters()'>All Characters</button>
+        <app-character-list *ngIf="!displayUserCharacters" [charactersList] ="allCharacters" ></app-character-list>
         <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
         <!-- This should change depending on which link is pressed -->
         <!-- <h2>Fights</h2> -->
 
-        <!--<app-fight-list *ngIf="displayUserFight" [fightWithCharacters]='userFightList'>
-        </app-fight-list>-->
+        <app-character-list *ngIf="displayUserCharacters" [charactersList]='usersCharacters'>
+        </app-character-list>
       </div>
     </main>
 

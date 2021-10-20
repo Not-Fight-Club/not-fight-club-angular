@@ -154,7 +154,7 @@ export class StoreComponent implements OnInit {
     }
     this.characterpickerViewable = true;
     //on button press toggle the component into view
-
+  }
 
     //Confirm that the user wants the entity.
     //let choice: boolean = confirm(`Are you sure you want your character's weapon to change? It will cost 100 not bucks.`);
@@ -177,7 +177,7 @@ export class StoreComponent implements OnInit {
 
 
    // }
-  }
+  
 
   changeCharacterWeapon() {
     

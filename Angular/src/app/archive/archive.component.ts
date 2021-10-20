@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { relativeTimeThreshold } from 'moment';
 import { Character } from '../interfaces/character';
+import { CharacterWithTraitandWeapon } from '../interfaces/characterWithTraitandWeapon';
 import { Fight } from '../interfaces/fight';
 import { Fighter } from '../interfaces/fighter';
+import { User } from '../interfaces/user';
 import { ArchiveService } from '../service/archive/archive.service';
 import { CharacterService } from '../service/character/character.service';
 import { FightService } from '../service/fight/fight.service';
@@ -19,6 +21,8 @@ export class ArchiveComponent implements OnInit {
 
   //toggle character archive on
   charactersActive: Boolean = false;
+  allCharacters: CharacterWithTraitandWeapon[] = [];
+  usersCharacters: CharacterWithTraitandWeapon[] =[]
 
   fightList: Fight[] = [];
 
@@ -31,7 +35,8 @@ export class ArchiveComponent implements OnInit {
   characterIdList:number[]=[];
   //store all fithers for all the past fight
   allFighters:any[] =[];
-  displayUserFight:boolean = false;
+  displayUserFight: boolean = false;
+  displayUserCharacters: boolean = false;
   //combined list for fight with characters
   //I use an array of obj
   fightWithCharacters:any[] =[];
@@ -75,6 +80,8 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserId();
     this.getFights();
+    this.getCharacters();
+    this.getUsersCharacters();
     
 
     
@@ -178,6 +185,36 @@ export class ArchiveComponent implements OnInit {
     }
   }
 
+  showMyCharacters(): void {
+    //if(this.userId)
+    //  this.getFightsByUserId(this.userId);
+    this.displayUserCharacters = !this.displayUserCharacters;
+  }
+
+  
+  getCharacters():void {
+    //get all the characters in the db
+    this.characterService.GetCharacters().subscribe(characters => {
+      this.allCharacters = characters;
+      console.log(this.allCharacters)
+    })
+  }
+
+  getUsersCharacters(): void {
+
+    let userstring = sessionStorage.getItem('user');
+    if (userstring != null) {
+      let user:User = JSON.parse(userstring);
+
+      //get all the characters in the db for a specific user
+      this.characterService.UserCharacterList(user.userId).subscribe(characters => {
+        this.usersCharacters = characters;
+        console.log(this.usersCharacters)
+      })
+    }
+   
+    
+  }
 
 
 }

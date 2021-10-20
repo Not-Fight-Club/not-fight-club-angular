@@ -10,6 +10,13 @@ import { UserService } from '../service/user/user.service';
 import { SeasonTimerComponent } from '../season-timer/season-timer.component';
 import { Season } from '../interfaces/season';
 import { SeasonService } from '../service/season/season.service';
+import { Character } from '../interfaces/character';
+import { BucksService } from '../service/bucks/bucks.service';
+import { WeaponService } from '../service/weapon/weapon.service';
+import { CharacterService } from '../service/character/character.service';
+import { Router } from '@angular/router';
+import { Weapon } from '../interfaces/weapon';
+import { ShopService } from '../service/shop/shop.service';
 
 @Component({
   selector: 'app-product',
@@ -21,11 +28,16 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
 
 
-  constructor(private productService: ProductService, private userService: UserService, private seasonService: SeasonService) { }
+  constructor(private productService: ProductService, private userService: UserService, private seasonService: SeasonService,
+    private bucksService: BucksService, private weaponService: WeaponService, private characterService: CharacterService, private router: Router,
+    private shopService: ShopService  ) { }
 
   locations: Product[] = [];
   weapons: Product[] = [];
   traits: Product[] = [];
+  userCharacters: Character[] = [];
+
+  characterpickerViewable: boolean = false;
 
 
 
@@ -48,11 +60,21 @@ export class ProductComponent implements OnInit {
         } else {
           this.products.push(elem);
         }
-       
+
       })
       //this.products = x;
       console.log(`this.products`)
     });
+
+    let userString = sessionStorage.getItem('user');
+    //console.log(userString);
+    if (userString === null) {
+      alert("You are not logged in.");
+      return
+    }
+    let user:User = JSON.parse(userString);
+
+    this.characterService.UserCharacterList(user.userId).subscribe(characters => this.userCharacters = characters)
   }
 
   buyProductButton(productId: number) {
@@ -102,5 +124,77 @@ export class ProductComponent implements OnInit {
     // this.productService.buyProduct(productId, user).subscribe();
 
   }
+
+  character1: Character | undefined;
+  setChar1(c: Character | undefined) {
+    if (c == undefined) {
+      //always take the first character
+      this.character1 = this.userCharacters[0];
+      console.log("setchar1: ", this.character1)
+    } else {
+      console.log("setchar1: ", c);
+      this.character1 = c;
+    }
+
+  }
+
+  editCharacterWeapon() {
+    if (this.userCharacters.length == 0) {
+      alert("You must create a character first!")
+    }
+    this.characterpickerViewable = true;
+  }
+
+
+  changeCharacterWeapon(product:Product) {
+
+    //check if a character was selected
+    if (this.character1 == undefined) {
+      //always take the first character
+      alert("You must pick a character first");
+    
+    }
+    //generate a new weapon and send to the character db
+    this.SubmitWeapon(product);
+
+  }
+
+  async SubmitWeapon(product: Product) {
+
+
+    //Confirm that the user wants the entity.
+    let choice: boolean = confirm(`Are you sure you want your character's weapon to change? It will cost ${product.productPrice} not bucks.`);
+    if (!choice) return
+
+
+    //collect payment
+    this.bucksService.adjustBucks(product.productPrice).subscribe(async canAfford => {
+      if (canAfford) {
+        //get the weapon selected
+
+        this.shopService.AddUserProduct(product)?.subscribe( async addedUserProduct => {
+          let weapon: Weapon = { weaponId: 0, description: `${product.productName}: ${product.productDescription}` }
+          //send to the character db
+          await this.weaponService.PostWeapon(weapon).subscribe(weapon => {
+            //update the character with the new weapon
+            if (this.character1 != undefined) {
+              this.character1.weaponId = weapon.weaponId;
+
+              this.characterService.UpdateCharacter(this.character1).subscribe(character => {
+                alert(`You've updated ${character.name} to use a ${weapon.description}`)
+                this.router.navigateByUrl('store')
+              })
+            }
+
+
+
+          });
+        })
+      }
+    })
+
+
+  }
+
 
 }

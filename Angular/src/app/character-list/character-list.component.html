@@ -13,11 +13,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let character of userCharacters | paginate: {id: paginationName, itemsPerPage: 5, currentPage: page, totalItems: totalRecords}">
+        <tr *ngFor="let character of charactersList | paginate: {id: paginationName, itemsPerPage: 5, currentPage: page, totalItems: totalRecords}">
+          <td>{{character.characterId}}</td>
           <td>{{character.name}}</td>
           <td>{{character.baseform}}</td>
-          <td>{{character.traitId}}</td>
-          <td>{{character.weaponId}}</td>
+          <td>{{character.trait}}</td>
+          <td>{{character.weapon}}</td>
         </tr>
       </tbody>
     </table>

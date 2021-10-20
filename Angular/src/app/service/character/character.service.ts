@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Character } from '../../interfaces/character';
 import { environment } from '../../../environments/environment';
 import { Guid } from 'guid-typescript';
+import { CharacterWithTraitandWeapon } from '../../interfaces/characterWithTraitandWeapon';
 
 @Injectable({
   providedIn: 'root'
@@ -28,17 +29,17 @@ export class CharacterService {
     return this.http.get<Character>(`${this.url}/api/character/${charId}`).pipe(map((character: Character) => character));
   }
 
-  //get all characters in the database
-  GetCharacters(): Observable<Character[]> {
-    return this.http.get<Character[]>(`${this.url}/api/character`);
+  //get all characters in the database 
+  GetCharacters(): Observable<any> {
+    return this.http.get(`${this.url}/api/character`);
   }
 
   //get all characters for a specific user in the database
-  UserCharacterList(userId: Guid | null| undefined): Observable<Character[]> {
+  UserCharacterList(userId: Guid | null| undefined): Observable<CharacterWithTraitandWeapon[]> {
     if (userId == null || userId == undefined) {
       alert("You must be logged in to purchase a new weapon")
     }
-    return this.http.get<Character[]>(`${this.url}/api/character/userCharacters/${userId}`)
+    return this.http.get<CharacterWithTraitandWeapon[]>(`${this.url}/api/character/userCharacters/${userId}`)
   }
 
   //update a character with new properties
