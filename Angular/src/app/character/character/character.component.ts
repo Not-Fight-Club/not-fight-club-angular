@@ -101,6 +101,7 @@ export class CharacterComponent implements OnInit {
     //get a weapon from the 3rd party api
     let OWeapon = await this.weaponService.RandomWeapon();
     OWeapon.subscribe(item => {
+      console.log("weapon data", item);
       let weapon: Weapon = { weaponId: 0, description: item[0] }
       sessionStorage.setItem('weapon', JSON.stringify(weapon))
     })
@@ -114,9 +115,9 @@ export class CharacterComponent implements OnInit {
         OWeapon = this.RetrievefromSession();
       }
       else {
-        console.log(OWeapon.description[0])
+        console.log(OWeapon.description);
         console.log(OWeapon.weaponId)
-        let weaponFull: Weapon = { weaponId: OWeapon.weaponId, description: OWeapon.description[0] }
+        let weaponFull: Weapon = { weaponId: OWeapon.weaponId, description: OWeapon.description }
         var dbWeapon = await this.weaponService.PostWeapon(weaponFull);
         dbWeapon.subscribe(weapon => { localStorage.setItem('weapon', JSON.stringify(weapon)) })
         console.log(`weapon from db: ${dbWeapon}`)
