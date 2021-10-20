@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
-import { User } from 'src/app/interfaces/user';
 import { UserProduct } from 'src/app/interfaces/userProduct';
 import { environment } from 'src/environments/environment';
 

@@ -39,6 +39,7 @@ export class TraitService {
       .pipe(catchError(this.handleError<Trait>('add new Trait', trait)));
   }
 
+
   private handleError<T>(operation: string, result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

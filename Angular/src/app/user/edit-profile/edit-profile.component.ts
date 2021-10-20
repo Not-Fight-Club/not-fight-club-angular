@@ -73,15 +73,31 @@ export class EditProfileComponent implements OnInit {
       this.convertToBase64(file);
     }
   }
+
+  
   updateCurrentUser() {
     console.log(this.formValue.value);
-    let id: Guid = Guid.parse("EA0EF870-5D07-42A7-B5E6-1F6BF8706415");
-    this.formValue.value.userId = "EA0EF870-5D07-42A7-B5E6-1F6BF8706415";
-    // this.userService.editProfile(this.formValue.value.userId, this.formValue.value).subscribe(data => {
-    this.userService.editProfile(id, this.formValue.value).subscribe(data => {
-      // this.userService.getUserById(this.formValue.value.userId);
-      this.router.navigateByUrl(`/users/${this.formValue.value.userId}`)
-    })
+    //let id: Guid = Guid.parse("EA0EF870-5D07-42A7-B5E6-1F6BF8706415");
+    //this.formValue.value.userId = "EA0EF870-5D07-42A7-B5E6-1F6BF8706415";
+    const sessionUser = sessionStorage.getItem('user');
+    if (sessionUser === null) {
+      console.log('Error Occurred')
+    } else {
+      let capturedUser: User = JSON.parse(sessionUser);
+      if (capturedUser.userId != null) {
+        // this.userService.editProfile(this.formValue.value.userId, this.formValue.value).subscribe(data => {
+        this.userService.editProfile(capturedUser.userId, this.formValue.value).subscribe(data => {//nothing is every done with the response???
+          // this.userService.getUserById(this.formValue.value.userId);
+          console.log(data.pword);
+          console.log(data.profilePic);
+       
+          sessionStorage.setItem('user', JSON.stringify(data));
+          this.router.navigateByUrl(`/users/${this.formValue.value.userId}`)
+      })
+    
+      }
+    }
+   
   };
 
   convertToBase64(file: File) {
@@ -127,10 +143,10 @@ export class EditProfileComponent implements OnInit {
       console.log(id1)
       if (confirm("Are you sure you want to delete your profile?\nAll information associated to this user profile will be permanently deleted.")) {
         //
-        let DBUserId: Guid = Guid.parse("53266E78-7DEE-42C9-B9B8-E40422C959BF");
-        this.userService.deleteUser(DBUserId).subscribe(
+        // let DBUserId: Guid = Guid.parse("53266E78-7DEE-42C9-B9B8-E40422C959BF");
+        this.userService.deleteUser(id1).subscribe(
           id => {
-            this.router.navigate(['login']);
+            this.router.navigate(['**']); //send them back to the home page after deleting their account
           });
       }
     }

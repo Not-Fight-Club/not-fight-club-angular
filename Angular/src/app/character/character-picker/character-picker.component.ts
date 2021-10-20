@@ -14,6 +14,7 @@ export class CharacterPickerComponent implements OnInit {
   @Input() name: string = "characterInput";
   @Input() id: string = "characterInput";
   @Input() characters: Character[] = [];
+  //@Input() specificCharacters: Character[] = []; //gets characters for one specific user that's logged in and displays that in the shop
   @Input() label: string = "Character";
 
   @Output() selectedChar = new EventEmitter<Character | undefined>();
@@ -21,7 +22,7 @@ export class CharacterPickerComponent implements OnInit {
   ngOnInit(): void {
     if (!this.characters.length) {
       // TODO: this should probably be removed in favor of only using Input() property
-      this.characterService.GetCharacters().subscribe(characters => this.characters = characters);
+      //this.characterService.GetCharacters().subscribe(characters => this.characters = characters);
     }
   }
 

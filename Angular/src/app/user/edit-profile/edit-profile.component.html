@@ -20,9 +20,9 @@
         <div class="row py-2">
           <div class="col-md-6"> <label for="dob">Date of Birth</label> <input type="text" formControlName="dob" class="bg-light form-control"> </div>
         </div>
-        <div class="py-3 pb-4 border-bottom"> <button (click)="updateCurrentUser()" class="btn border button mr-3">Save Changes</button> <button (click)="goBackToProfile()" class="btn border button">Cancel</button> </div>
+        <div class="py-3 pb-4 border-bottom"> <button type="submit" (click)="updateCurrentUser()" class="btn border button mr-3">Save Changes</button> <button type ="button"(click)="goBackToProfile()" class="btn border button">Cancel</button> </div>
         <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-            <div class="ml-auto"> <button class="btn danger" (click)="deleteUser()">Delete Account</button> </div>
+            <div class="ml-auto"> <button class="btn danger" type="button" (click)="deleteUser()">Delete Account</button> </div>
         </div>
       </form>
     </div>

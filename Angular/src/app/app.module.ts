@@ -30,8 +30,9 @@ import { OngoingfightsComponent } from './ongoingfights/ongoingfights.component'
 import { VoteComponent } from './vote/vote.component';
 import { PrivPubFightComponent } from './priv-pub-fight/priv-pub-fight.component';
 import { NewFightComponent } from './new-fight/new-fight.component';
+import { SeasonTimerComponent } from './season-timer/season-timer.component';
+import { CharacterListComponent } from './character-list/character-list.component';
 import { WeatherPickerComponent } from './weather-picker/weather-picker.component';
-
 
 
 
@@ -63,7 +64,8 @@ import { WeatherPickerComponent } from './weather-picker/weather-picker.componen
     OngoingfightsComponent,
     PrivPubFightComponent,
     NewFightComponent,
-    CharacterPickerComponent,
+    SeasonTimerComponent,
+    CharacterListComponent,
     WeatherPickerComponent
 
 

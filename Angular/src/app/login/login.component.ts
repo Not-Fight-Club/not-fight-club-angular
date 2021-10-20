@@ -18,15 +18,14 @@ export class LoginComponent implements OnInit {
 
 
   areCredentialsInvalid = false;
+  authenticated: Boolean = false;
 
   ngOnInit(): void {
   }
 
-  //this method can be removed since it is not used for validation anymore. But wait until final days in case it becomes
-  //useful for something else
-  //can use it for hashing passwords
 
-  onSubmit(signInForm: NgForm) {
+
+ async onSubmit(signInForm: NgForm) {
 
     //if (!signInForm.valid) {
     //  this.isFormInValid = true;
@@ -37,7 +36,7 @@ export class LoginComponent implements OnInit {
     //grab a single user from the database
     //check the password entered on the form with the returned password from the database using bcrypt
     //if the password matches, change isauthenticated to true and redirect to home
-      //save user to session storage
+    //save user to session storage
     //if the password doesn't match display to screen that credentials are invalid
 
 
@@ -47,22 +46,24 @@ export class LoginComponent implements OnInit {
 
     //make a call to the authentication service to get a user from the database
 
-    let authenticated = this.authenticationService.Login(signInData); //pass data to authentication service
-    authenticated.then(result => {
-      if (result) {
+    this.authenticated = await this.authenticationService.Login(signInData); //pass data to authentication service
+    
+      if (this.authenticated) {
         //redirect user to home page
         this.areCredentialsInvalid = false;
         this.router.navigate([''])
         console.log('I made it to rerouter')
 
-      } else {
-
+      } else if(!this.authenticated) { //added this as an else if to see if it would get rid of the invalid credentials message
+        console.log("I'm in the case when result is false and I'm not authenticated")
         sessionStorage.clear();
+        //user is getting the message that their credentials are invalid before we finish attempting to authenticate
+        //not sure what is causing this error
         this.areCredentialsInvalid = true;
         sessionStorage.clear();
       }
-    }
-      , error => console.log(error))
+    
+     
     //console.log(`login component: ${OUser}`);
     //save that user to session storage
 
@@ -94,7 +95,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    sessionStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.stringify(user)); 
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../../interfaces/user';
 import { UserR } from '../../interfaces/userR';
 import { ShopService } from '../../service/shop/shop.service';
 
@@ -9,7 +10,7 @@ import { ShopService } from '../../service/shop/shop.service';
 })
 export class UserPurchasesComponent implements OnInit {
 
-  @Input() user!: UserR;
+  @Input() user!: User;
 
   productList: any[] = [];
   totalRecords: number = this.productList.length;
