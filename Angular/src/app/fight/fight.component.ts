@@ -24,7 +24,7 @@ export class FightComponent implements OnInit {
 
 
 
-  fight: Fight | null = null;
+  fight!: Fight;
   fighters: Fighter[] = [];
 
   characters: Character[] = [];
@@ -33,18 +33,18 @@ export class FightComponent implements OnInit {
 
   endTime: Date = new Date();
 
-  constructor(  private route: ActivatedRoute,
-    private router: Router,private fightService: FightService, private characterService: CharacterService, private traitService: TraitService, private weaponService: WeaponService) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router, private fightService: FightService, private characterService: CharacterService, private traitService: TraitService, private weaponService: WeaponService) { }
 
   ngOnInit(): void {
     //this.getCurrentFight()
-  this.route.paramMap.pipe(
+    this.route.paramMap.pipe(
       switchMap(
         (params: ParamMap) =>
           this.fightService.getFightById(parseInt(params.get('fightId')!))
       )
-    ).subscribe(x=>{
-      this.fight=x;
+    ).subscribe(x => {
+      this.fight = x;
       this.getFighters(this.fight.fightId);
       this.endTime = this.fight.endDate;
       //alert(this.endTime);
@@ -96,15 +96,15 @@ export class FightComponent implements OnInit {
 
     */
   }
-/*
-  getCurrentFight() {
-    return this.fightService.getCurrentFight().subscribe(fight => {
-      console.log(fight);
-      this.fight = fight;
-      this.getFighters(fight.fightId);
-    });
-  }
-*/
+  /*
+    getCurrentFight() {
+      return this.fightService.getCurrentFight().subscribe(fight => {
+        console.log(fight);
+        this.fight = fight;
+        this.getFighters(fight.fightId);
+      });
+    }
+  */
   getFighters(fightId: number) {
     return this.fightService.getFighters(fightId).subscribe(fighters => {
       console.log(fighters);

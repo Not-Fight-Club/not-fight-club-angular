@@ -12,6 +12,7 @@ export class CommnetsService {
   constructor(private http: HttpClient) { }
 
   url: string = 'https://localhost:44327/api/Wagers/postbet';
+  url2: string = 'https://localhost:44364/api/Comments/1';
 
 
   httpOptions = {
@@ -41,5 +42,13 @@ export class CommnetsService {
       return of(result as T);
     };
   }
+
+  getComments(): Observable<Comment[]> {
+    console.log("getCommentsService");
+    return this.http.get<Comment[]>(this.url2);
+
+
+  }
+
 
 }

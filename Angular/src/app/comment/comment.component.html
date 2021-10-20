@@ -10,14 +10,12 @@
       <div class="flex-grow-1 ms-2 ms-sm-3">
         <div>
           <textarea class="form-control py-0 px-1 border-0" rows="1" placeholder="Start writing..."
-            style="resize: none;" > </textarea>
+            style="resize: none;"> </textarea>
 
-          <button class="btn btn-primary" >Save</button>
-          <button class="btn btn-outline-primary" >Cancel</button>
+          <button class="btn btn-primary" (click)="save()">Save</button>
+          <button class="btn btn-outline-primary" (click)="cancel">Cancel</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
