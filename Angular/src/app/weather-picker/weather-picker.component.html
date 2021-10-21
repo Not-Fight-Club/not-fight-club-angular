@@ -1,0 +1,8 @@
+<div class="form-group form-floating">
+
+	<select placeholder="weather" class=" form-select" [id]="id" [name]="name" (change)="onChange($event)">
+		<option value="0">Random Weather</option>
+		<option *ngFor="let w of weathers" [value]="w.weatherId">{{w.description}} </option>
+	</select>
+	<label>{{label}}</label>
+</div>
