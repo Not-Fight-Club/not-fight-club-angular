@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BetsService } from '../service/bets/bets.service';
 import { Fighter } from '../interfaces/fighter';
 import { Wager } from '../interfaces/wager';
+import { Character } from '../interfaces/character';
 
 @Component({
   selector: 'app-bets',
@@ -14,6 +15,9 @@ export class BetsComponent implements OnInit {
   // These are two fighter in a fight
   @Input() fighter1!: Fighter;
   @Input() fighter2!: Fighter;
+
+  @Input() character1!: Character;
+  @Input() character2!: Character;
 
 
   // Wager to be sent
