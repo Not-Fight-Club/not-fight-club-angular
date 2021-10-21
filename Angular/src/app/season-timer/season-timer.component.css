@@ -1,3 +1,8 @@
 ul#times li {
   display: inline;
 }
+
+.centered {
+  justify-content: center;
+  text-align: center;
+}

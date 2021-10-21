@@ -1,7 +1,12 @@
-#fighters {
+.fighters-text {
     justify-content:center;
-    margin-left: 25rem;
+    /*margin-left: 25rem;*/
     font-size:larger;
     font-weight:900;
     font-family:'Copperplate Gothic'
+}
+
+.centered {
+    justify-content: center;
+    text-align: center;
 }
