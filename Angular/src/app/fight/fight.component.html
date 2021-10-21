@@ -1,10 +1,16 @@
-<div id="fighters">
-  <span>{{characters[0].name}}, a {{traits[0].description}} {{characters[0].baseform}} wielding
-    {{weapons[0].description}}</span>&nbsp;
-  <span>VS</span>&nbsp;
-  <span>{{characters[1].name}}, a {{traits[1].description}} {{characters[1].baseform}} wielding
-    {{weapons[1].description}}</span>
+<div id="fighters" class="fighters-text">
+  <div class="centered">{{characters[0].name}}, the {{traits[0].description}} {{characters[0].baseform}} wielding
+    {{weapons[0].description}}</div>&nbsp;
+  <div class="centered">VS</div>&nbsp;
+  <div class="centered">{{characters[1].name}}, the {{traits[1].description}} {{characters[1].baseform}} wielding
+    {{weapons[1].description}}</div>
+  <div class="centered">IN</div>
+  <div class="fighters-text" *ngIf="fight">
+    <div class="centered">Location: {{fight.locationNavigation}}</div>
+    <div class="centered">Weather: {{fight.weatherNavigation}}</div>
+  </div>
 </div>
+
 
 <app-timer *ngIf="fight != null" [endTime]="endTime" [tallyVotesFunction]="tallyVotes.bind(this)" [result]="result"></app-timer>
 
