@@ -4,6 +4,7 @@ import { CharacterService } from '../service/character/character.service';
 import { Battle, Fight } from '../interfaces/fight';
 import { Fighter } from '../interfaces/fighter';
 import { Character } from '../interfaces/character';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ongoingfights',
@@ -17,13 +18,17 @@ export class OngoingfightsComponent implements OnInit {
 
   characters: Character[] = [];
 
-  constructor(private fightService: FightService, private characterService: CharacterService) { }
+  constructor(
+    private fightService: FightService,
+    private characterService: CharacterService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getOngoingFights()
   }
   createNewFight(): void {
-    window.location.href="fights/new";
+    this.router.navigate(["/fights", "new"]);
   }
 
   getOngoingFights() {
